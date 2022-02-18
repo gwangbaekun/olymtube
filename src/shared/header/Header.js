@@ -9,6 +9,12 @@ function Header() {
     navigate("/");
   }
 
+  function login() {
+    console.log('로그인버튼')
+    navigate('/login')
+  }
+
+  
   return (
     <>
       <div className="header">
@@ -21,16 +27,11 @@ function Header() {
             />
           </div>
         </div>
-
         <div className="header__center">
-          <input type="text" />
+          <input type="text" placeholder="검색어를 입력하세요"/>
         </div>
-
         <div className="header__right">
-          <img
-            alt="Nouman Ahmed"
-            stc="https://avatars1.githubusercontent.com/u/35970677?s=60&v=4"
-          />
+          <div onClick={login}>로그인 </div>
         </div>
       </div>
     </>
