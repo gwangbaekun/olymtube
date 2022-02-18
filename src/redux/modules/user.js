@@ -1,6 +1,10 @@
 import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 
+import { apis } from "../../shared/api"; 
+import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
+
+
 // actions
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
@@ -17,6 +21,35 @@ const initialUser = {
   userinfo: { username: "", profile: "" },
   token: null,
 };
+
+
+//middleware actions
+
+const SignUpDB = (user_data) => {
+  return function (dispatch, getState ) {
+    apis
+      .signup(user_data.username, user_data.password, user_data.nickname, user_data.user_profile)
+      .then((res) => {
+        console.log('회원가입성공', res)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+};
+
+
+const loginDB=(user_data,token) =>{
+  return async function (dispatch,getState){
+      setCookie("is_login",token);
+      dispatch(setUser(user_data,token));
+      console.log(user_data,token)
+  }
+}
+
+
+
+
 
 export default handleActions(
   {
@@ -48,6 +81,9 @@ export default handleActions(
 const actionCreators = {
   logOut,
   getUser,
+  setUser, 
+  loginDB,
+  SignUpDB,
 };
 
 export { actionCreators };

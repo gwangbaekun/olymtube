@@ -12,7 +12,10 @@ function Header() {
   const handleClick = () => {
     navigate("/");
   };
-
+  function login() {
+    console.log('로그인버튼')
+    navigate('/login')
+  }
   return (
     <>
       <div className="header">
@@ -43,6 +46,11 @@ function Header() {
           />
           //ToDo : 프로필 사진 좀 더 크게
         </div>
+
+        <div className="header__right">
+          <div onClick={login}>로그인 </div>
+        </div>
+
       </div>
     </>
   );
