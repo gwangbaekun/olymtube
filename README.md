@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Olymtube Project Front-end/Back-end 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 동영상 스트리밍 서비스 제공 사이트 YOUTUBE 클론 프로젝트
 
-## Available Scripts
+## 📍 프로젝트 소개
 
-In the project directory, you can run:
+동영상 스트리밍 서비스 제공 사이트 YOUTUBE를 클론 코딩하였습니다.
+사이트에서 인식한 문제점을 코드로 개선하려고 노력하였습니다.
+클라우드 서버를 이용하지 않고 동영상 파일을 저장하였습니다.(추후 이용)
 
-### `npm start`
+# FLIX Project Front-end/Back-end 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### OTT 서비스 제공 사이트 NETFLIX 클론 프로젝트
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📍 개발 인원 및 기간
 
-### `npm test`
+개발기간 : 2022.02.18 - 2022.02.24
+개발 인원 : 프론트엔드 2명, 백엔드 3명
+개발자
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- FE: 정소영, 백제열
+- BE: 홍하빈, 고영빈, 진동녁
 
-### `npm run build`
+## 📍 기술스택
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Javascript (ES6+)
+- React with Hooks, React Router
+- styled-components
+- redux
+- redux-thunk
+- redux-actions
+- react-player
+- axios
+- connected-react-router
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 협업도구
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Slack
+- Git & Github
+<!-- - Trello -->
+- POSTMAN
 
-### `npm run eject`
+## 📍 시연 영상
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<a href="">시연 영상 보러가기</a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##### Reference
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 이 프로젝트는 [YOUTUBE](https://www.youtube.com) 사이트를 참조하여 학습목적으로 만들었습니다
+- 학습수준의 프로젝트로 만들었기 때문에 이 코드 및 데모영상을 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다
+- 이 프로젝트에서 사용하고 있는 사진 대부분은 위코드에서 구매한 것이므로 해당 프로젝트 외부인이 사용할 수 없습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br>
 
-## Learn More
+## 📍 Teammate
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div id=teammate>
+  <h4> Front-End </h4>
+  <table style="text-align:center;">
+    <tr>
+      <th><a href="https://github.com/gwangbaekun">백제열</a></th>
+      <th><a href="">김동희</a></th>
+    </tr>
+    <tr>
+      <td>
+        - 데이터 값에 따라 이동거리가 달라지는 Carousel Slide 구현<br>
+        - Portal을 통한 Modal 구현<br>
+        - 페이지, Carousel, Modal component 간 라우팅 연결
+      </td>
+      <td>
+        - scroll에 따라 스타일링이 변화하는 nav bar, footer 구현<br>
+        - 메인페이지 및 modal창 내 비디오 스트리밍 구현<br>
+        - 페이지, Carousel, Modal component 간 라우팅 연결
+      </td>
+      <td>
+        - 유효성 검사를 포함한 회원가입 기능 구현<br>
+        - 유효성 검사 및 token을 부여하는 로그인 기능 구현<br>
+        - kakao, google 소셜 로그인 기능 구현<br>
+        - modal 내의 하트 아이콘 클릭을 통한 '찜하기' 기능 및 찜하기 리스트 기능 구현
+      </td>
+    </tr>
+  </table>
+  <br>
+  <h4> Back-End </h4>
+  <table style="text-align:center;">
+    <tr>
+      <th><a href="https://github.com/jay95ko">고준영</a></th>
+      <th><a href="https://github.com/flow2lime">김장호</a></th>
+    </tr>
+    <tr>
+      <td>
+        - StreamingHttpResponse 와 S3를 이용한 스트리밍 서비스<br>
+        - jwt토큰과 이를통한 얻어진 권한을 활용한 찜하기 기능 구현<br>
+        - Docker, EC2, RDS, S3를 활용한 배포
+      </td>
+      <td><br>
+      </td>
+    </tr>       
+  </table>
+  <br>
+</div>
