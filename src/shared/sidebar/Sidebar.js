@@ -1,20 +1,20 @@
 import React from "react";
 import SideBarRow from "./SideBarRow";
 import "./sidebar.css";
+import { BiHomeHeart } from "react-icons/bi";
+import { MdSubscriptions, MdOndemandVideo } from "react-icons/md";
+import { GiCampfire } from "react-icons/gi";
 
 const SideBar = () => {
   return (
     <>
       <div className="sidebar">
-        <SideBarRow selected title="Home" />
-        <SideBarRow title="Trending" />
-        <SideBarRow title="Subscription" />
+        <SideBarRow selected Icon={BiHomeHeart} title="Home" />
+        <SideBarRow Icon={GiCampfire} title="Trending" />
+        <SideBarRow Icon={MdOndemandVideo} title="Your videos" />
         <hr />
-        <SideBarRow title="Library" />
-        <SideBarRow title="History" />
-        <SideBarRow title="Your videos" />
-        <SideBarRow title="Watch later" />
-        <SideBarRow title="Liked vides" />
+        <SideBarRow Icon={MdSubscriptions} title="Subscription" />
+        //ToDo : 구독 카테고리 보여주기
         <hr />
       </div>
     </>

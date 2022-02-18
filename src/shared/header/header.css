@@ -31,8 +31,14 @@
 }
 
 .header__right {
+  font-size: 20px;
   display: flex;
   align-items: center;
+  margin-right: 10px;
+}
+
+.header__right.CgProfile {
+  font-size: 40px;
 }
 
 .header__icon {
