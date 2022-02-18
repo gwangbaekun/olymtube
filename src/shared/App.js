@@ -23,7 +23,7 @@ function App() {
           }
         />
         <Route
-          path="video/*"
+          path="video"
           element={
             <div className="app__mainpage">
               <SideBar />
@@ -32,15 +32,7 @@ function App() {
           }
         />
         <Route
-          path="sub/*"
-          element={
-            <div className="app__mainpage">
-              <SideBar />
-            </div>
-          }
-        />
-        <Route
-          path="sub/*"
+          path="sub"
           element={
             <div className="app__mainpage">
               <SideBar />
@@ -56,25 +48,25 @@ function App() {
               </div>
             }
           />
-          <Route
-            path="/login"
-            element={
-              <div className="app__mainpage">
-                <SideBar />
-                <Login />
-              </div>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <div className="app__mainpage">
-                <SideBar />
-                <Signup />
-              </div>
-            }
-          />
         </Route>
+        <Route
+          path="/login"
+          element={
+            <div className="app__mainpage">
+              <SideBar />
+              <Login />
+            </div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <div className="app__mainpage">
+              <SideBar />
+              <Signup />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );
