@@ -1,6 +1,5 @@
 .sidebar {
-  width: 25%;
-  position: fixed;
+  flex: 0.2;
 }
 
 .sidebar > hr {
