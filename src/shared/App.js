@@ -29,24 +29,16 @@ function App() {
             </div>
           }
         />
+
         <Route
-          path="sub/*"
+          path="/sub"
           element={
             <div className="app__mainpage">
               <SideBar />
+              <SubscribePage />
             </div>
           }
-        >
-          <Route
-            path=":id"
-            element={
-              <div className="app__mainpage">
-                <SideBar />
-                <SubscribePage />
-              </div>
-            }
-          />
-        </Route>
+        />
       </Routes>
     </div>
   );
