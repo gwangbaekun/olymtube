@@ -5,6 +5,8 @@ import { Route, Router, Routes } from "react-router-dom";
 import MainPage from "../pages/mainpage/MainPage";
 import Detail from "../pages/detailPage/Detail";
 import SubscribePage from "../pages/subPage/SubscribePage";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
           }
         />
         <Route
-          path="video/*"
+          path="video"
           element={
             <div className="app__mainpage">
               <SideBar />
@@ -31,11 +33,39 @@ function App() {
         />
 
         <Route
-          path="/sub"
+          path="sub"
           element={
             <div className="app__mainpage">
               <SideBar />
               <SubscribePage />
+            </div>
+          }
+        >
+          <Route
+            path=":id"
+            element={
+              <div className="app__mainpage">
+                <SideBar />
+                <SubscribePage />
+              </div>
+            }
+          />
+        </Route>
+        <Route
+          path="/login"
+          element={
+            <div className="app__mainpage">
+              <SideBar />
+              <Login />
+            </div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <div className="app__mainpage">
+              <SideBar />
+              <Signup />
             </div>
           }
         />

@@ -45,9 +45,9 @@ export const apis = {
       // ToDo : 비디오 어떻게 보낼지 고민중
     }),
   get: () => api.get("/video"),
-  getVideo: () => api.get(`video/${video_id}`),
-  subscribe: () => api.post(`/subscribe/${video_id}`),
-  subscribes: () => api.get("/subscribes"),
-  myVideo: () => api.get(`/myvideo/${user_id}`),
-  delete: () => api.delete(`/video/${video_id}`),
+  // getVideo: () => api.get(`video/${video_id}`),
+  // subscribe: () => api.post(`/subscribe/${video_id}`),
+  // subscribes: () => api.get("/subscribes"),
+  // myVideo: () => api.get(`/myvideo/${user_id}`),
+  // delete: () => api.delete(`/video/${video_id}`),
 };
