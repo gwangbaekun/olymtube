@@ -23,22 +23,13 @@ api.interceptors.request.use(function (config) {
 
 export const apis = {
   login: (username, password) =>
-    api.post("/login", { 
-      username: username, 
-      password: password, 
-    }),
-
-  signup: (username, password, nickname, user_profile) =>
-    api.post("/signup", {
+    api.post("/login", {
       username: username,
       password: password,
-      nickname: nickname,
-      user_profile: user_profile,
     }),
 
-  userInfo: (token) =>
-    api.post("/user", { "X-AUTH-TOKEN" : token }),
-    // 여기좀 user모듈 99번째 리스트에서 빼야함 한단걔. 
+  userInfo: (token) => api.post("/user", { "X-AUTH-TOKEN": token }),
+  // 여기좀 user모듈 99번째 리스트에서 빼야함 한단걔.
 
   check: (username) => api.post(`/check`, { username: username }),
 
@@ -50,7 +41,7 @@ export const apis = {
       video: video,
       // ToDo : 비디오 어떻게 보낼지 고민중
     }),
-    
+
   get: () => api.get("/video"),
   // getVideo: () => api.get(`video/${video_id}`),
   // subscribe: () => api.post(`/subscribe/${video_id}`),

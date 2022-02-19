@@ -40,8 +40,10 @@ const SearchPage = (props) => {
               title={item.title}
               image={item.img}
               views={item.views}
-              timestamp={item.createdAt}
+              createdAt={item.createdAt}
               category={item.category}
+              username={item.username}
+              profile={item.profile}
             />
           </Link>
         );

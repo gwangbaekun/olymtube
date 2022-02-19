@@ -2,6 +2,7 @@
   display: flex;
   margin-bottom: 30px;
   max-width: 700px;
+  flex-direction: column;
 }
 
 .videorow > img {

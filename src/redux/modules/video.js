@@ -34,7 +34,23 @@ const initialVideo = [
     username: "소영",
     profile: "프로필사진",
   },
+  {
+    video_id: "2",
+    title: "대한민국 봅슬레이",
+    img: mockdata,
+    category: "봅슬레이",
+    views: "300",
+    likes: "15",
+    createdAt: "2022-01-01",
+    username: "소영",
+    profile: "프로필사진",
+  },
 ];
+
+const initialState = {
+  list: initialVideo,
+  is_loading: true,
+};
 
 // axios 요청해서 video 리스트 만드는 미들웨어 함수
 // async function createVideoRows(videos) {
@@ -71,10 +87,11 @@ export default handleActions(
   {
     [SET_VIDEO]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload;
+        draft.list = action.payload.video_list;
+        draft.is_loading = false;
       }),
   },
-  initialVideo
+  initialState
 );
 
 const actionCreators = {

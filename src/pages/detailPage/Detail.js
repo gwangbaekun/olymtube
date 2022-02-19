@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import Video from "../../component/Video/Video";
 import VideoInfo from "../../component/Video/VideoInfo";
 import VideoRow from "../../component/videoRow/VideoRow";
+import SubscribePage from "../subPage/SubscribePage";
+import "./detail.css";
 
 function Detail() {
   let { videoId } = useParams();
@@ -21,8 +23,10 @@ function Detail() {
     <>
       <div className="videoplayer">
         <div className="videoplayer__videodetails">
+          <div className="videoplayer__video">
+            <Video videoId={videoId} />
+          </div>
           <div className="videoplayer__videoinfo">
-            <Video />
             <VideoInfo
               title={videoInfo.title}
               username={videoInfo.username}
@@ -32,9 +36,9 @@ function Detail() {
               createdAt={videoInfo.createdAt}
             />
           </div>
-          <div className="videoplayer__suggested">
-            <VideoRow />
-          </div>
+        </div>
+        <div className="videoplayer__suggested">
+          <SubscribePage />
         </div>
       </div>
     </>

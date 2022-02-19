@@ -5,7 +5,7 @@ import SideBar from "./sidebar/Sidebar";
 import { Route, Router, Routes } from "react-router-dom";
 import MainPage from "../pages/mainpage/MainPage";
 import Detail from "../pages/detailPage/Detail";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
 
@@ -13,35 +13,32 @@ import SubscribePage from "../pages/subPage/SubscribePage";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
-
 function App() {
-  
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const is_login= useSelector((state)=>state.user.is_login)
 
-
-  React.useEffect(() => {    
+  React.useEffect(() => {
     const is_cookie = getCookie("is_login");
-    if( is_cookie ){
-        console.log('로그인체크로가자')
-        dispatch(userActions.loginCheckDB());
+    if (is_cookie) {
+      dispatch(userActions.loginCheckDB());
     }
-},[]);
-
+  }, []);
 
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={
             <div className="app__mainpage">
               <SideBar />
               <MainPage />
             </div>
           }
-        />
+        >
+          <Route path=":id" element={<></>} />
+        </Route>
         <Route
           path="video"
           element={
