@@ -20,6 +20,7 @@ const userInfo = createAction(SET_USER, (user) => ({ user }));
 const initialUser = {
   userinfo: { username: "", profile: "" },
   token: null,
+  is_login:false,
 };
 
 
@@ -46,52 +47,82 @@ const loginDB=(user_data) =>{
       .then((res) => {
         console.log(res)
         const token = res.data.token;
-        setCookie("is_login",token );
-        // console.log(token)
+        setCookie( "is_login" , token );
         let loginUserData = {
           username : res.data.username,
           profile : res.data.profile,
           }
         dispatch(setUser(loginUserData, token));
-        // apis
-        //   .userInfo({})
-        //   .then((res) =>{
-        //       loginUserData.user_id = res.data.user_id;
-        //       loginUserData.nickname = res.data.nickname;
-        //       console.log('로그인성공 디스패치해')
-        //       dispatch(setUser(user_data,token));
-        //   })
-        //   .catch((error) => console.log(error));
+        console.log(loginUserData, token)
         })
         .catch((error) => alert("회원정보가 일치하지 않습니다."));
     };
   };
 
+
+  const loginCheckDB=() =>{
+  //   // 로그인 유지 토큰이 있으면 서버에서 유저 데이터 가지고 와라  
+    return async function (dispatch,getState){
+        const Auth = getCookie("is_login");
+        console.log(Auth? true: false)
+
+        if(Auth !== undefined){
+          apis
+          .userInfo(Auth)
+          .then((res) => {
+            res.data.is_login = true
+            console.log('로그인체크됨', res)
+            const user = {
+              user_id : res.data.id,
+              is_login : res.data.is_login,
+              username : res.data.username,
+              profile : res.data.profile,
+              // subscribe_category : [
+              //   { category : res.category, }
+              // ]
+            }
+            console.log(user, Auth, '로그인정보출력')            
+            dispatch(
+              setUser({user, Auth})
+            );
+          }).catch(err => window.alert("로그인에 실패하였습니다."));  
+        }
+      }
+    }
+
+
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state)
-        console.log(action)
-        draft.token = action.payload.token;
+        console.log(action,'로그인리듀서')
+        draft.token = action.payload.user.Auth;
+        draft.is_login = true;
         draft.userinfo = {
           username: action.payload.user.username,
           profile: action.payload.user.profile,
         };
+        // console.log(action.payload.user.username)
+        // console.log(draft.user.is_login )
       }),
+
+
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         // deleteCookie("is_login");
         draft.userinfo = null;
         draft.token = null;
       }),
+
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
+
     [USERINFO]: (state, action) =>
       produce(state, (draft) => {
         // draft.user = action.payload.user;
         // draft.username = action.payload.username;
-        console.log(state)
-        console.log(action)
+        // console.log(state)
+        // console.log(action)
       }),
   },
   initialUser
@@ -103,6 +134,7 @@ const actionCreators = {
   setUser, 
   loginDB,
   SignUpDB,
+  loginCheckDB
 };
 
 export { actionCreators };
