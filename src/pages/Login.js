@@ -21,8 +21,16 @@ const Login = () => {
             password : pwdRef.current.value,
         }
         dispatch(userActions.loginDB(logIn_data))
-        console.log(logIn_data)
+        // console.log(logIn_data)
     }
+
+    // React.useEffect(async() => {
+    //     if( !is_login ){
+    //         dispatch(userActions.loginCheckDB());
+    //     }
+    // },[]);
+
+
 
     return (
         <React.Fragment>
