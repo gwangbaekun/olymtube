@@ -4,7 +4,7 @@ const tokenCheck = document.cookie;
 const token = tokenCheck.split("=")[1];
 const api = axios.create({
   // 실제 베이스 유알엘
-  baseURL: "http://13.125.206.220:8080",
+  baseURL: "http://binscot.shop",
   // baseURL: "http://3.36.71.110",
   // baseURL: "http://52.78.96.234:8080",
   headers: {
@@ -17,25 +17,31 @@ const api = axios.create({
 
 api.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
-  config.headers.common["authorization"] = `${accessToken}`;
+  config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
   return config;
 });
 
 export const apis = {
   login: (username, password) =>
-    api.post("/login", { username: username, password: password }),
-  signup: (username, password, check_password, profile) =>
-    api.post("/user/signup", {
+    api.post("/login", { 
+      username: username, 
+      password: password, 
+    }),
+
+  signup: (username, password, nickname, user_profile) =>
+    api.post("/signup", {
       username: username,
       password: password,
-      check_password: check_password,
-      profile: profile,
+      nickname: nickname,
+      user_profile: user_profile,
     }),
+
   userInfo: (token) =>
-    api.post(`/user`, {
-      authorization: token,
-    }),
+    api.post("/user", { "X-AUTH-TOKEN" : token }),
+    // 여기좀 user모듈 99번째 리스트에서 빼야함 한단걔. 
+
   check: (username) => api.post(`/check`, { username: username }),
+
   upload: (img, title, category, video) =>
     api.post("/upload", {
       img: img,
@@ -44,6 +50,7 @@ export const apis = {
       video: video,
       // ToDo : 비디오 어떻게 보낼지 고민중
     }),
+    
   get: () => api.get("/video"),
   // getVideo: () => api.get(`video/${video_id}`),
   // subscribe: () => api.post(`/subscribe/${video_id}`),

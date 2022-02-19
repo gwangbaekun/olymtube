@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
+
 import Header from "../shared/header/Header";
 import { Button, Grid, Input, Image, Text } from "../shared/element" ;
 
@@ -11,6 +13,7 @@ import { Button, Grid, Input, Image, Text } from "../shared/element" ;
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
 
     const idRef = React.useRef(null);
     const pwdRef = React.useRef(null);
@@ -21,8 +24,10 @@ const Login = () => {
             password : pwdRef.current.value,
         }
         dispatch(userActions.loginDB(logIn_data))
-        console.log(logIn_data)
+        navigate("/");
     }
+
+
 
     return (
         <React.Fragment>

@@ -1,12 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
+import {useDispatch, useSelector} from "react-redux";
+
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
 function Header() {
+  
+  const user = useSelector((state)=> state.user)
+  // console.log(user)
   let navigate = useNavigate();
 
   const handleClick = () => {
@@ -48,7 +53,7 @@ function Header() {
         </div>
 
         <div className="header__right">
-          <div onClick={login}>로그인 </div>
+          <div onClick={login}>{user.userinfo.username}로그인 </div>
         </div>
 
       </div>

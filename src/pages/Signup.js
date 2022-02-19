@@ -19,14 +19,12 @@ const Signup = () => {
     const pwdCheckRef = React.useRef(null);
     const profileRef = React.useRef(null);
 
-
     const goSignup = () =>{
-
         const user_data = {
             username : nameRef.current.value,
             password : pwdRef.current.value,
-            nickname : pwdCheckRef.current.value,
-            user_profile : "https://post-phinf.pstatic.net/MjAyMDAxMDJfMjE0/MDAxNTc3OTU1NDUwMTk2.CYPuT2TFBYa15mnZDOReu5YQErQHmO3juTjWXN1sg8Ag.3LRsWxTGKaYOzCFDHm6-stMK0BNTTSLlaKz2wQ1l5c4g.JPEG/62246832_425639158281486_1528361062506865852_n.jpg?type=w1200",
+            check_password : pwdCheckRef.current.value,
+            profile : profileRef.current.value,
         }
     dispatch(userActions.SignUpDB(user_data))
     console.log(user_data)
@@ -50,7 +48,7 @@ const Signup = () => {
                     </Grid>
                     <Input _ref={pwdRef} type='password' width='500px' margin="10px" label="PassWord" ></Input>
                     <Input _ref={pwdCheckRef} type='password' width='500px' margin="10px" label="CheckPassWord"></Input>
-                    <Input _ref={profileRef} type='file' width='500px' margin="10px" label="CheckPassWord" ></Input>
+                    <Input _ref={profileRef} type='text' width='500px' margin="10px" label="frofile" ></Input>
                     <Button margin="20px" text="회원가입" _onClick={goSignup} />
                 </Grid>
         </React.Fragment>
