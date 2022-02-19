@@ -32,6 +32,7 @@
 - react-player
 - axios
 - connected-react-router
+- react-youtube
 
 ### 협업도구
 

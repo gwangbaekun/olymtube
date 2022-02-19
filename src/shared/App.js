@@ -26,12 +26,19 @@ function App() {
           path="video"
           element={
             <div className="app__mainpage">
-              <SideBar />
               <Detail />
             </div>
           }
-        />
-
+        >
+          <Route
+            path=":id"
+            element={
+              <div className="app__mainpage">
+                <Detail />
+              </div>
+            }
+          />
+        </Route>
         <Route
           path="sub"
           element={
