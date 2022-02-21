@@ -3,7 +3,7 @@ import axios from "axios";
 const tokenCheck = document.cookie;
 const token = tokenCheck.split("=")[1];
 const api = axios.create({
-  baseURL: "http://binscot.shop",
+  baseURL: "http://3.34.52.24",
 
   headers: {
     // "content-type": "application/json;charset=UTF-8",
@@ -25,11 +25,7 @@ api.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  login: (username, password) =>
-    api.post("/login", {
-      username: username,
-      password: password,
-    }),
+  login: (user_data) => api.post("/login", user_data),
   signup: (frm) => api.post("/signup", frm),
 
   userInfo: (token) => api.post("/user", { "X-AUTH-TOKEN": token }),

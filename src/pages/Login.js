@@ -14,14 +14,12 @@ const Login = () => {
   const idRef = React.useRef(null);
   const pwdRef = React.useRef(null);
 
-  const goLogin = () => {
+  const goLogin = async () => {
     const logIn_data = {
       username: idRef.current.value,
       password: pwdRef.current.value,
     };
-    dispatch(userActions.loginDB(logIn_data));
-    console.log(logIn_data.username);
-    console.log(logIn_data.password);
+    await dispatch(userActions.loginDB(logIn_data)).then(() => navigate("/"));
   };
 
   return (
@@ -29,7 +27,7 @@ const Login = () => {
       <div className="login__page">
         <div className="login__title">
           <img className="title__logo" src="/img/olympic.png" />
-          <p className="title__text">Olymtube에 로그인합니다</p>
+          <p className="title__text">로그인</p>
         </div>
         <div className="login__input__box">
           <div className="login__input">

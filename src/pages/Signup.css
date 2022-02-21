@@ -1,76 +1,75 @@
-.signup__page{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
+.signup__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
 }
 .signup__input__box {
-    width: 100%;
-    padding: 50px;
-    box-sizing: border-box;
-    background-color: #d0ebff;
+  width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  background-color: #d0ebff;
 }
-.signup__input{
-    width: 450px;
-    padding: 50px 30px;
-    box-sizing: border-box;
-    background-color: white;
-    border-radius: 10px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.signup__input {
+  width: 450px;
+  padding: 50px 30px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.signup__box{
-    display: flex;
+.signup__box {
+  display: flex;
 }
 .signup__box .signup__text {
-    width: 275px; 
-    height : 40px;
-    margin-right: 7px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding-left: 15px;
-    box-sizing: border-box;
+  width: 275px;
+  height: 40px;
+  margin-right: 7px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-left: 15px;
+  box-sizing: border-box;
 }
 .signup__box .signup__double {
-    width: 70px;
-    height: 40px;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    background-color: #74c0fc;
-    border: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
+  width: 70px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  background-color: #74c0fc;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
 }
-.signup__input .signup__pw, .signup__pwCheck  {
-    margin-bottom: 30px;
-    width : 350px;
-    height : 40px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding-left: 15px;
-    box-sizing: border-box;
+.signup__input .signup__pw,
+.signup__pwCheck {
+  margin-bottom: 30px;
+  width: 350px;
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-left: 15px;
+  box-sizing: border-box;
 }
-.signup__input .signup__file{
-    border: none;
-    padding: 0; 
-    margin-bottom: 50px;
+.signup__input .signup__file {
+  border: none;
+  padding: 0;
+  margin-bottom: 50px;
 }
 .signup__input .signup__btn {
-    width: 350px;
-    height: 40px; 
-    border-radius: 5px;
-    background-color: #74c0fc;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    box-shadow: 1px 1px 2px #ced4da;
+  width: 350px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #74c0fc;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px #ced4da;
 }

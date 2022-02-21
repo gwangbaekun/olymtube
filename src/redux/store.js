@@ -9,6 +9,7 @@ import video from "./modules/video";
 
 export const history = createBrowserHistory();
 
+// 커넥티드 라우터가 필요한가에 대한 의문. 미들웨어에서 쓸 수 있다고는 하지만...
 const rootReducer = combineReducers({
   router: connectRouter(history),
   user: user,

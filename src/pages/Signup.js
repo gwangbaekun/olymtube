@@ -28,17 +28,9 @@ const Signup = () => {
     if (file) {
       setImageFile(file);
     }
-    // reader.onloadend = () => {
-    //   // console.log(reader.result);
-    //   dispatch(imageActions.setPreview(reader.result));
-    // };
-    // if (file) {
-    //   setImageFile(file);
-    //   console.log(file);
-    // }
   };
 
-  const goSignup = () => {
+  const goSignup = async () => {
     const user_info = {
       username: nameRef.current.value,
       password: pwdRef.current.value,
@@ -53,16 +45,7 @@ const Signup = () => {
     );
     frm.append("profile", imageFile);
 
-    dispatch(userActions.SignUpDB(frm));
-
-    // axios("/signup", {
-    //   method: "POST",
-    //   body: JSON.stringify(user_info),
-    // });
-    // console.log(user_info);
-    // for (var pair of form.entries()) {
-    //   console.log(pair[0], pair[1]);
-    // }
+    await dispatch(userActions.SignUpDB(frm)).then(() => navigate("/login"));
   };
 
   const pwdCheck = () => {

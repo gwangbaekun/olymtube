@@ -31,7 +31,7 @@
 - redux-actions
 - react-player
 - axios
-- connected-react-router
+<!-- - connected-react-router 사용하지 않았음 react-router-dom v6로 충분히 대체 가능-->
 - react-youtube
 
 ### 협업도구
@@ -49,7 +49,6 @@
 
 - 이 프로젝트는 [YOUTUBE](https://www.youtube.com) 사이트를 참조하여 학습목적으로 만들었습니다
 - 학습수준의 프로젝트로 만들었기 때문에 이 코드 및 데모영상을 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다
-- 이 프로젝트에서 사용하고 있는 사진 대부분은 위코드에서 구매한 것이므로 해당 프로젝트 외부인이 사용할 수 없습니다.
 
 <br>
 
@@ -60,17 +59,16 @@
   <table style="text-align:center;">
     <tr>
       <th><a href="https://github.com/gwangbaekun">백제열</a></th>
-      <th><a href="">김동희</a></th>
     </tr>
     <tr>
       <td>
-        - 데이터 값에 따라 이동거리가 달라지는 Carousel Slide 구현<br>
+        - 스크린 사이즈에 따라 비디오 플레이어 크기가 달라지는 것 구현<br>
         - Portal을 통한 Modal 구현<br>
         - 페이지, Carousel, Modal component 간 라우팅 연결
       </td>
       <td>
         - scroll에 따라 스타일링이 변화하는 nav bar, footer 구현<br>
-        - 메인페이지 및 modal창 내 비디오 스트리밍 구현<br>
+        - 메인페이지 비디오 스트리밍 구현<br>
         - 페이지, Carousel, Modal component 간 라우팅 연결
       </td>
       <td>
