@@ -1,59 +1,92 @@
 import React from "react";
 
-import {useDispatch, useSelector} from "react-redux";
+import "./Signup.css";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-
-import Header from "../shared/header/Header";
-import { Button, Grid, Input, Image, Text } from "../shared/element" ;
-
-
 const Signup = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const nameRef = React.useRef(null);
+  const pwdRef = React.useRef(null);
+  const pwdCheckRef = React.useRef(null);
+  const profileRef = React.useRef(null);
 
-    const nameRef = React.useRef(null);
-    const pwdRef = React.useRef(null);
-    const pwdCheckRef = React.useRef(null);
-    const profileRef = React.useRef(null);
+  const goSignup = () => {
+    const user_info = {
+      username: nameRef.current.value,
+      password: pwdRef.current.value,
+      check_password: pwdCheckRef.current.value,
+      profile: profileRef.current.value,
+    };
+    // dispatch(userActions.SignUpDB(user_info))
+    // console.log(user_info)
 
-    const goSignup = () =>{
-        const user_data = {
-            username : nameRef.current.value,
-            password : pwdRef.current.value,
-            check_password : pwdCheckRef.current.value,
-            profile : profileRef.current.value,
-        }
-    dispatch(userActions.SignUpDB(user_data))
-    console.log(user_data)
-    navigate("/login");
-}
-
-    const pwdCheck = () =>{
-        if(pwdRef.current.value !== pwdCheckRef.current.value){
-            console.log("중복체크기능 - 나중");
-        }else{
-            console.log("중복체크기능 - 나중");
-        }
+    const form = new FormData();
+    dispatch(
+      userActions.SignUpDB(
+        user_info,
+        form.append("profile", profileRef.current.value)
+      )
+    );
+    console.log(user_info);
+    for (var pair of form.entries()) {
+      console.log(pair[0], pair[1]);
     }
+    navigate("/login");
+  };
 
-    return (
-        <React.Fragment>
-            <Grid is_flex flex_direction="column" align-items="center" width='800px' Border='1px solid red' margin='0 auto' >
-                <Grid  is_flex justify_content="center" align-items="center" >
-                    <Input _ref={nameRef} margin="10px" label="ID" width='420px'></Input>
-                    <Button margin="15px 0 0 0" text="중복체크" width='80px' height="40px" _onClick={pwdCheck}/>
-                    </Grid>
-                    <Input _ref={pwdRef} type='password' width='500px' margin="10px" label="PassWord" ></Input>
-                    <Input _ref={pwdCheckRef} type='password' width='500px' margin="10px" label="CheckPassWord"></Input>
-                    <Input _ref={profileRef} type='text' width='500px' margin="10px" label="frofile" ></Input>
-                    <Button margin="20px" text="회원가입" _onClick={goSignup} />
-                </Grid>
-        </React.Fragment>
-    )
-}
+  const pwdCheck = () => {
+    if (pwdRef.current.value !== pwdCheckRef.current.value) {
+      console.log("중복체크기능 - 나중");
+    } else {
+      console.log("중복체크기능 - 나중");
+    }
+  };
 
+  return (
+    <React.Fragment>
+      <div className="signup__page">
+        <div className="login__title">
+          <img className="title__logo" src="/img/olympic.png" />
+          <p className="title__text">Olymtube에 회원가입 합니다</p>
+        </div>
+        <div className="signup__input__box">
+          <div className="signup__input">
+            <div className="signup__box">
+              <input
+                className="signup__text"
+                type="text"
+                ref={nameRef}
+                placeholder="아이디를 입력해주세요"
+              />
+              <button className="signup__double" onClick={pwdCheck}>
+                중복체크
+              </button>
+            </div>
+            <input
+              className="signup__pw"
+              type="password"
+              ref={pwdRef}
+              placeholder="비밀번호를 입력해주세요"
+            />
+            <input
+              className="signup__pwCheck"
+              type="password"
+              ref={pwdCheckRef}
+              placeholder="비밀번호를 한번 더 입력해주세요"
+            />
+            <input className="signup__file" type="file" ref={profileRef} />
+            <button className="signup__btn" onClick={goSignup}>
+              회원가입
+            </button>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default Signup;
