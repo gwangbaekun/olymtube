@@ -8,14 +8,12 @@ import SubscribePage from "../subPage/SubscribePage";
 import "./detail.css";
 
 function Detail() {
-  let { videoId } = useParams();
+  let params = useParams();
 
-  const videoInfo = useSelector((state) => state.video[1]);
-
-  console.log(videoInfo);
+  const videoInfo = useSelector((state) => state.video.list[params.id]);
 
   useEffect(() => {
-    console.log("axios");
+    console.log("axios, 유저가 구독하고 있는 category 영상");
     // videoId 로 요청하기
   });
 
@@ -24,7 +22,7 @@ function Detail() {
       <div className="videoplayer">
         <div className="videoplayer__videodetails">
           <div className="videoplayer__video">
-            <Video videoId={videoId} />
+            <Video videoId={params.id} />
           </div>
           <div className="videoplayer__videoinfo">
             <VideoInfo

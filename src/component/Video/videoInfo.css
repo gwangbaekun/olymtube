@@ -52,3 +52,26 @@ hr {
   font-size: small;
   margin: 0;
 }
+
+.videoinfo__subscribe__false {
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  border-color: red;
+  margin: auto;
+  min-width: 5.14em;
+  height: 35px;
+}
+.videoinfo__subscribe__true {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  border-color: white;
+  margin: auto;
+  min-width: 5.14em;
+  height: 35px;
+}
+
+.sidebarrow:hover > .sidebarrow__button {
+  color: red;
+}

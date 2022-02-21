@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
-import { CgProfile } from "react-icons/cg";
-import Image from "react-bootstrap/Image";
 import Figure from "react-bootstrap/Figure";
 
 function Header() {

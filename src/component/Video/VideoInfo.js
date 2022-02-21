@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./videoInfo.css";
 import { FaRegThumbsUp } from "react-icons/fa";
-
 import SideBarRow from "../../shared/sidebar/SideBarRow";
+import Figure from "react-bootstrap/Figure";
+import { Button } from "react-bootstrap";
 
 const VideoInfo = ({ title, username, profile, views, likes, createdAt }) => {
+  const [subClick, setSubClick] = useState(false);
+
+  const handleSubClick = () => {
+    setSubClick((prev) => !prev);
+    console.log("axios");
+    // 구독하고있는지도 판단해야할듯
+  };
+
   return (
     <div className="videoinfo">
       <div className="videoinfo__headline">
@@ -22,15 +31,29 @@ const VideoInfo = ({ title, username, profile, views, likes, createdAt }) => {
       <hr />
       <div className="videoinfo__channel">
         <div>
-          {/* <Avatar className="videoinfo__avatar" alt={username} src={profile} /> */}
+          <Figure.Image
+            className="videoinfo__avatar"
+            alt={username}
+            src={profile}
+          />
           <div className="videoinfo__channelinfo">
             <h3 className="videoinfo__channeltitle">{title}</h3>
           </div>
         </div>
-        <div className="videoinfo__subscribe">
-          {/* <Button color="secondary">SUBSCRIBE</Button> */}
+        <div>
+          <button
+            onClick={handleSubClick}
+            className={
+              subClick
+                ? "videoinfo__subscribe__true"
+                : "videoinfo__subscribe__false"
+            }
+          >
+            subscribe
+          </button>
         </div>
       </div>
+      <div>// ToDo 사용자가 구독하고 있는 채널</div>
     </div>
   );
 };

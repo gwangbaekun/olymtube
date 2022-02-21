@@ -11,11 +11,16 @@ import { FiAlertCircle } from "react-icons/fi";
 const SearchPage = (props) => {
   let { searchQuery } = useParams();
 
-  const videoRow = useSelector((state) => state.video);
+  const videoRow = useSelector((state) => state.video.list);
+  console.log(videoRow);
 
   const [channelRow, setChannelRow] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    console.log("axios");
+  }, []);
 
   if (isError) {
     return (

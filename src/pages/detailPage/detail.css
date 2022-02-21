@@ -1,15 +1,17 @@
 .videoplayer {
   display: flex;
   justify-content: center;
+  flex: 80;
 }
 
 .videoplayer__videodetails {
-  flex: 0.8;
+  flex: 80;
+  display: relative;
 }
 
 .videoplayer__video,
 .videoplayer__videoinfo {
-  margin: 5px 5px 5px 10px;
+  margin-right: 5%;
 }
 
 .videoplayer__suggested {

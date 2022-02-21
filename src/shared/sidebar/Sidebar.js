@@ -34,7 +34,9 @@ const SideBar = () => {
           <SideBarRow Icon={MdSubscriptions} title="Subscription" />
         </Link>
         {category.map((e) => {
-          return <Category _onClick img={e.img} title={e.category} />;
+          return (
+            <Category key={e.id} _onClick img={e.img} title={e.category} />
+          );
         })}
         <hr />
       </div>
