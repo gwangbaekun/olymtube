@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import Figure from "react-bootstrap/Figure";
 
 function Header() {
   const user_info = useSelector((state) => state.user.userinfo);
+  const [menu, setMenu] = useState(true);
   const is_login = useSelector((state) => state.user.is_login);
 
   console.log(is_login);
@@ -19,6 +20,10 @@ function Header() {
     navigate("/");
   };
 
+  const handleMenu = () => {
+    setMenu((prev) => !prev);
+  };
+
   function login() {
     console.log("로그인버튼");
     navigate("/login");
@@ -26,7 +31,7 @@ function Header() {
   return (
     <>
       <div className="header">
-        <div className="header__left">
+        <div onClick={handleMenu} className="header__left">
           <AiOutlineMenu />
           <div>
             <Link to="/">

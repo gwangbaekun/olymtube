@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./videoCard.css";
 
 const VideoCard = ({
+  id,
   image,
   title,
   category,
@@ -10,8 +12,12 @@ const VideoCard = ({
   profile,
   createTime,
 }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/video/${id}`);
+  };
   return (
-    <div className="videocard">
+    <div onClick={handleClick} className="videocard">
       <img className="videocard__image" src={image} alt="" />
       <div className="videocard__info">
         {/* <Avatar className="videocard__avatar" alt={username} src={profile} /> */}

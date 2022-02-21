@@ -2,6 +2,7 @@ import { connectRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
+import image from "./modules/image";
 import subscribes from "./modules/subscribes";
 import user from "./modules/user";
 import video from "./modules/video";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   user: user,
   video: video,
   subscribes: subscribes,
+  image: image,
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];

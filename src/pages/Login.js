@@ -19,8 +19,7 @@ const Login = () => {
       username: idRef.current.value,
       password: pwdRef.current.value,
     };
-    // dispatch(userActions.loginDB(logIn_data))
-    // navigate("/");
+    dispatch(userActions.loginDB(logIn_data));
     console.log(logIn_data.username);
     console.log(logIn_data.password);
   };

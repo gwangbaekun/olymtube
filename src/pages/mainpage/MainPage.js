@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import VideoCard from "../../component/VideoCard/VideoCard";
-import { actionCreators as videoActions } from "../../redux/modules/video";
+import video, {
+  actionCreators as videoActions,
+} from "../../redux/modules/video";
 import "./mainpage.css";
 
 function MainPage() {
@@ -48,6 +50,7 @@ function MainPage() {
           {videos.map((item) => {
             return (
               <VideoCard
+                id={item.video_id}
                 key={item.video_id + item.title}
                 title={item.title}
                 image={item.img}

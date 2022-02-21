@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Signup.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as imageActions } from "../redux/modules/image";
+import axios from "axios";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -12,30 +14,55 @@ const Signup = () => {
   const nameRef = React.useRef(null);
   const pwdRef = React.useRef(null);
   const pwdCheckRef = React.useRef(null);
-  const profileRef = React.useRef(null);
+  const fileInput = React.useRef();
+  const [imageFile, setImageFile] = useState(null);
+
+  const preview = useSelector((state) => state.image.preview);
+
+  const filePreview = (e) => {
+    const reader = new FileReader();
+    const file = fileInput.current.files[0];
+    reader.onloadend = () => {
+      dispatch(imageActions.setPreview(reader.result));
+    };
+    if (file) {
+      setImageFile(file);
+    }
+    // reader.onloadend = () => {
+    //   // console.log(reader.result);
+    //   dispatch(imageActions.setPreview(reader.result));
+    // };
+    // if (file) {
+    //   setImageFile(file);
+    //   console.log(file);
+    // }
+  };
 
   const goSignup = () => {
     const user_info = {
       username: nameRef.current.value,
       password: pwdRef.current.value,
       check_password: pwdCheckRef.current.value,
-      profile: profileRef.current.value,
     };
     // dispatch(userActions.SignUpDB(user_info))
     // console.log(user_info)
-
-    const form = new FormData();
-    dispatch(
-      userActions.SignUpDB(
-        user_info,
-        form.append("profile", profileRef.current.value)
-      )
+    const frm = new FormData();
+    frm.append(
+      "user_info",
+      new Blob([JSON.stringify(user_info)], { type: "application/json" })
     );
-    console.log(user_info);
-    for (var pair of form.entries()) {
-      console.log(pair[0], pair[1]);
-    }
-    navigate("/login");
+    frm.append("profile", imageFile);
+
+    dispatch(userActions.SignUpDB(frm));
+
+    // axios("/signup", {
+    //   method: "POST",
+    //   body: JSON.stringify(user_info),
+    // });
+    // console.log(user_info);
+    // for (var pair of form.entries()) {
+    //   console.log(pair[0], pair[1]);
+    // }
   };
 
   const pwdCheck = () => {
@@ -78,7 +105,13 @@ const Signup = () => {
               ref={pwdCheckRef}
               placeholder="비밀번호를 한번 더 입력해주세요"
             />
-            <input className="signup__file" type="file" ref={profileRef} />
+            <input
+              className="signup__file"
+              type="file"
+              onChange={filePreview}
+              ref={fileInput}
+              accept="image/*"
+            />
             <button className="signup__btn" onClick={goSignup}>
               회원가입
             </button>

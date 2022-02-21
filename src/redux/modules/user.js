@@ -1,7 +1,7 @@
 import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 
-import { apis } from "../../shared/api";
+import { apiForms, apis } from "../../shared/api";
 import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 
 // actions
@@ -24,23 +24,9 @@ const initialUser = {
 
 // middleware actions
 // 회원가입, user정보입력하고 뒤에 사진업로드....한건데...
-const SignUpDB = (user_info, profile) => {
+const SignUpDB = (frm) => {
   return function (dispatch, getState) {
-    apis
-      .signup(user_info.username, user_info.password, user_info.check_password)
-      .then((res) => {
-        apis
-          .signup(profile)
-          .then((res) => {
-            console.log("회원가입성공", res);
-          })
-          .catch((error) => {
-            console.log("사진업로드 실패", error);
-          });
-      })
-      .catch((error) => {
-        console.log("회원가입 실패");
-      });
+    apiForms.signup(frm);
   };
 };
 

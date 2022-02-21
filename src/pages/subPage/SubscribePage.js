@@ -31,10 +31,6 @@ const SearchPage = (props) => {
   }
   return (
     <div className="searchpage">
-      <div className="searchpage__filter">
-        <MdTune />
-        <h2>Filter</h2>
-      </div>
       {/* {isLoading ? (
         <CircularProgress className="loading" color="secondary" />
       ) : null} */}
