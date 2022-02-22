@@ -10,12 +10,12 @@ import Category from "../category/Category";
 
 const SideBar = () => {
   const navigate = useNavigate();
-  const category = useSelector((state) => state.subscribes.category_list);
+  const category = useSelector(
+    (state) => state.user.userinfo.userCategoryResponseDtoList
+  );
+  console.log(category);
 
-  useEffect(() => {
-    console.log("유저가 구독하고 있는 카테고리 보여주는 리덕스");
-    console.log(category);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

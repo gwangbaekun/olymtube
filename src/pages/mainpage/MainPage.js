@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Category from "../../component/category/Category";
 import VideoCard from "../../component/VideoCard/VideoCard";
 import video, {
   actionCreators as videoActions,
 } from "../../redux/modules/video";
+import { apis } from "../../shared/api";
 import "./mainpage.css";
 
 function MainPage() {
@@ -21,7 +23,7 @@ function MainPage() {
       dispatch(videoActions.setVideo(_video));
       console.log(_video);
     } else if (id === undefined) {
-      console.log("axios 동영상 받아오기");
+      dispatch(videoActions.setVideoDB());
     }
     // dispatch(videoActions.setVideo({ videos, is_loading }));
     // dispatch(videoActions.setVideo());
@@ -42,10 +44,10 @@ function MainPage() {
   return (
     <>
       <div className="recommendedvideos">
+        <Category />
         {/* {isLoading ? (
           <CircularProgress className="loading" color="secondary" />
         ) : null} */}
-        //ToDo: 로딩화면 보여주기
         <div className="recommendedvideos__videos">
           {videos.map((item) => {
             return (

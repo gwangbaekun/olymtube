@@ -11,8 +11,13 @@ import { FiAlertCircle } from "react-icons/fi";
 const SearchPage = (props) => {
   let { searchQuery } = useParams();
 
+  const userCategoryResponseDtoList = useSelector(
+    (state) => state.user.userinfo.userCategoryResponseDtoList
+  );
+  console.log(userCategoryResponseDtoList);
   const videoRow = useSelector((state) => state.video.list);
-  console.log(videoRow);
+
+  // const userSubVideo =
 
   const [channelRow, setChannelRow] = useState("");
   const [isLoading, setIsLoading] = useState(true);

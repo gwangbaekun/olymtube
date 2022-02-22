@@ -92,17 +92,22 @@ const loginDB = (user_data) => {
 };
 
 const loginCheckDB = (Auth) => {
-  //   // 로그인 유지 토큰이 있으면 서버에서 유저 데이터 가지고 와라
   return async function (dispatch, getState) {
-    if (Auth) {
-      apis
-        .userInfo(Auth)
-        .then((res) => {
-          dispatch(setUserCategory(res.data.userCategoryResponseDtoList));
-        })
-        .catch((err) =>
-          window.alert("로그인이 정상적으로 실행되지 않았습니다.")
+    if (Auth === null) {
+      return;
+    } else if (Auth) {
+      apis.userInfo(Auth).then((res) => {
+        dispatch(
+          setUser(
+            {
+              username: res.data.username,
+              profile: res.data.profile,
+              userCategoryResponseDtoList: res.data.userCategoryResponseDtoList,
+            },
+            Auth
+          )
         );
+      });
     }
   };
 };
@@ -116,6 +121,8 @@ export default handleActions(
         draft.userinfo = {
           username: action.payload.user.username,
           profile: action.payload.user.profile,
+          userCategoryResponseDtoList:
+            action.payload.user.userCategoryResponseDtoList,
         };
       }),
     [SET_USER_CATEGORY]: (state, action) =>

@@ -29,7 +29,7 @@ export const apis = {
   login: (user_data) => api.post("/login", user_data),
   signup: (frm) => api.post("/signup", frm),
 
-  userInfo: (token) => api.post("/user", { token }),
+  userInfo: (token) => api.post("/user", { "X-AUTH-TOKEN": token }),
 
   check: (username) => api.post(`/check`, { username: username }),
 

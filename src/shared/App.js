@@ -11,6 +11,7 @@ import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
 import SubscribePage from "../pages/subPage/SubscribePage";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import AddVideo from "../pages/addVideo/AddVideo";
 
 function App() {
   const dispatch = useDispatch();

@@ -3,13 +3,19 @@ import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 import mockdata from "./mockdata.png";
 import CgProfile from "react-icons/cg";
+import { apis } from "../../shared/api";
 
 // actions
 const SET_VIDEO = "SET_VIDEO";
 const ADD_VIDEO = "ADD_VIDEO";
+const SELECT_CATEGORY = "SELECT_CATEGORY";
 
 // action creators
 const setVideo = createAction(SET_VIDEO, (video_list) => ({ video_list }));
+const addVideo = createAction(ADD_VIDEO, (video) => ({ video }));
+const selectCategory = createAction(SELECT_CATEGORY, (category) => ({
+  category,
+}));
 
 const initialVideo = [
   {
@@ -52,7 +58,18 @@ const initialState = {
   is_loading: true,
 };
 
-// axios 요청해서 video 리스트 만드는 미들웨어 함수
+const setVideoDB = () => {
+  return async function (dispatch, getState) {
+    apis.get().then((res) => {
+      dispatch(setVideo(res.data));
+    });
+  };
+};
+
+const addVideoDB = () => {
+  return async function (dispatch, getState) {};
+};
+
 // async function createVideoRows(videos) {
 //   let newVideoRows = [];
 //   for (const video of videos) {
@@ -90,12 +107,18 @@ export default handleActions(
         draft.list = action.payload.video_list;
         draft.is_loading = false;
       }),
+    [SELECT_CATEGORY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.filter((e) => e.category === action.payload.category);
+      }),
   },
   initialState
 );
 
 const actionCreators = {
   setVideo,
+  setVideoDB,
+  selectCategory,
 };
 
 export { actionCreators };

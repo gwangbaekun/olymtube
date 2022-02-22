@@ -31,7 +31,7 @@ const initialVideo = [
     video_id: "video_id",
     title: "title",
     img: "img",
-    category: "category",
+    category: "봅슬레이",
   },
 ];
 
