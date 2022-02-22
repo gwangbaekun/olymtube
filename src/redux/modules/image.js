@@ -10,6 +10,7 @@ const setVideoPreview = createAction(SET_VIDEO_PREVIEW, (preview) => ({
 }));
 const initialState = {
   preview: null,
+  videoPreview: null,
 };
 
 export default handleActions(
@@ -20,7 +21,7 @@ export default handleActions(
       }),
     [SET_VIDEO_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
-        draft.preview = action.payload.preview;
+        draft.videoPreview = action.payload.preview;
       }),
   },
   initialState

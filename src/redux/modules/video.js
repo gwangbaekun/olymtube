@@ -3,7 +3,7 @@ import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 import mockdata from "./mockdata.png";
 import CgProfile from "react-icons/cg";
-import { apis } from "../../shared/api";
+import { apiForms, apis } from "../../shared/api";
 
 // actions
 const SET_VIDEO = "SET_VIDEO";
@@ -12,7 +12,7 @@ const SELECT_CATEGORY = "SELECT_CATEGORY";
 
 // action creators
 const setVideo = createAction(SET_VIDEO, (video_list) => ({ video_list }));
-const addVideo = createAction(ADD_VIDEO, (video) => ({ video }));
+const addVideo = createAction(ADD_VIDEO, (videoInfo) => ({ videoInfo }));
 const selectCategory = createAction(SELECT_CATEGORY, (category) => ({
   category,
 }));
@@ -66,8 +66,12 @@ const setVideoDB = () => {
   };
 };
 
-const addVideoDB = () => {
-  return async function (dispatch, getState) {};
+const addVideoDB = (frm) => {
+  return async function (dispatch, getState) {
+    apiForms.upload(frm).then((res) => {
+      console.log(res);
+    });
+  };
 };
 
 // async function createVideoRows(videos) {
@@ -107,6 +111,10 @@ export default handleActions(
         draft.list = action.payload.video_list;
         draft.is_loading = false;
       }),
+    [ADD_VIDEO]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.push(action.payload.videoInfo);
+      }),
     [SELECT_CATEGORY]: (state, action) =>
       produce(state, (draft) => {
         draft.list.filter((e) => e.category === action.payload.category);
@@ -119,6 +127,7 @@ const actionCreators = {
   setVideo,
   setVideoDB,
   selectCategory,
+  addVideoDB,
 };
 
 export { actionCreators };

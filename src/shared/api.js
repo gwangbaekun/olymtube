@@ -33,15 +33,6 @@ export const apis = {
 
   check: (username) => api.post(`/check`, { username: username }),
 
-  upload: (img, title, category, video) =>
-    api.post("/upload", {
-      img: img,
-      title: title,
-      category: category,
-      video: video,
-      // ToDo : 비디오 어떻게 보낼지 고민중
-    }),
-
   get: () => api.get("/video"),
   // getVideo: () => api.get(`video/${video_id}`),
   // subscribe: () => api.post(`/subscribe/${video_id}`),
@@ -52,4 +43,5 @@ export const apis = {
 
 export const apiForms = {
   signup: (frm) => apiForm.post("/signup", frm),
+  upload: (frm) => api.post("/upload", frm),
 };

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -6,8 +7,9 @@ import { GrClose } from "react-icons/gr";
 import { flexbox } from "@mui/system";
 import { MdUpload } from "react-icons/md";
 import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as previewActions } from "../../redux/modules/image";
+import { actionCreators as videoActions } from "../../redux/modules/video";
 import { BsArrowRight, BsArrowLeft, BsArrowBarUp } from "react-icons/bs";
 import FormControl, { useFormControl } from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -15,7 +17,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
+import GetThumbnail from "../../component/getThumbnail/getThumbnail";
 function MyFormTitle() {
   const { focused } = useFormControl() || {};
 
@@ -56,12 +58,15 @@ const icon__style = {
 
 function AddVideo(props) {
   const open = props.open;
-  const handleClose = props.handleClose;
-  const [page, setPage] = React.useState(0);
-  const [title, setTitle] = React.useState("");
   const dispatch = useDispatch();
-  const [category, setCategory] = React.useState(0);
-
+  const handleClose = props.handleClose;
+  const [page, setPage] = useState(0);
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState(0);
+  const video = useSelector((state) => state.image.videoPreview);
+  const img = useSelector((state) => state.image.preview);
+  const [file, setFile] = useState("");
+  const videoFile = React.useRef();
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
@@ -72,7 +77,8 @@ function AddVideo(props) {
   };
 
   const videoInput = (e) => {
-    dispatch(previewActions.setVideoPreview(e.currentTarget.value));
+    dispatch(previewActions.setVideoPreview(videoFile.current.files[0]));
+    setFile(videoFile.current.files[0]);
     setPage(1);
   };
 
@@ -87,6 +93,21 @@ function AddVideo(props) {
   const handleTitle = (e) => {
     console.log(title);
     setTitle(e.currentTarget.value);
+  };
+
+  const handleSubmitVideo = (e) => {
+    const contents = {
+      title: title,
+      category: category,
+    };
+    const frm = new FormData();
+    frm.append(
+      "contents",
+      new Blob([JSON.stringify(contents)], { type: "application/json" })
+    );
+    frm.append("img", img);
+    frm.append("video", video);
+    dispatch(videoActions.addVideoDB(frm));
   };
 
   {
@@ -167,6 +188,7 @@ function AddVideo(props) {
                 </Typography>
               </div>
               <input
+                ref={videoFile}
                 onChange={videoInput}
                 style={{ visibility: "hidden" }}
                 id="video"
@@ -194,18 +216,6 @@ function AddVideo(props) {
                 </Button>{" "}
               </div>
             </Box>{" "}
-            <BsArrowRight
-              style={{
-                marginTop: "80px",
-                float: "right",
-                width: "90px",
-                height: "40px",
-              }}
-              variant="primary"
-              onClick={nextPage}
-            >
-              다음
-            </BsArrowRight>
           </Box>
         </Modal>
       );
@@ -270,8 +280,10 @@ function AddVideo(props) {
                   <MenuItem value={9}>프리스타일 스키</MenuItem>
                 </Select>
               </FormControl>
+              <div>
+                <GetThumbnail video={file} />
+              </div>
             </div>
-            <div></div>
 
             <BsArrowBarUp
               style={{
@@ -279,9 +291,10 @@ function AddVideo(props) {
                 float: "right",
                 width: "90px",
                 height: "40px",
+                display: "fixed",
               }}
               variant="primary"
-              onClick={nextPage}
+              onClick={handleSubmitVideo}
             />
             <BsArrowLeft
               style={{
