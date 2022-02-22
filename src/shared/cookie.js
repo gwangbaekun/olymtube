@@ -4,10 +4,8 @@ const getCookie = (name) => {
   parts.shift();
   let result = parts[0];
   return result;
-  // if (parts.length === 2) {
-  //   return parts.pop().split(";").shift();
-  // }
 };
+
 const setCookie = (name, value, exp = 1) => {
   if (document.cookie) {
     return;

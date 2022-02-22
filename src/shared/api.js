@@ -1,14 +1,15 @@
 import axios from "axios";
+import { getCookie } from "./cookie";
 
-const tokenCheck = document.cookie;
-const token = tokenCheck.split("=")[1];
+const token = document.cookie.split("=")[1];
+
 const api = axios.create({
   baseURL: "http://3.34.52.24",
 
   headers: {
-    // "content-type": "application/json;charset=UTF-8",
+    // "content-type": "application/json",
     // accept: "application/json",
-    token: token,
+    "X-AUTH-TOKEN": token,
   },
 });
 const apiForm = axios.create({
@@ -28,8 +29,7 @@ export const apis = {
   login: (user_data) => api.post("/login", user_data),
   signup: (frm) => api.post("/signup", frm),
 
-  userInfo: (token) => api.post("/user", { "X-AUTH-TOKEN": token }),
-  // 여기좀 user모듈 99번째 리스트에서 빼야함 한단걔.
+  userInfo: (token) => api.post("/user", { token }),
 
   check: (username) => api.post(`/check`, { username: username }),
 

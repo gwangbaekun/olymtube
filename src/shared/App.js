@@ -11,8 +11,6 @@ import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
 import SubscribePage from "../pages/subPage/SubscribePage";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "../redux/store";
 
 function App() {
   const dispatch = useDispatch();

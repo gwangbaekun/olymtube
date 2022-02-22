@@ -45,7 +45,7 @@ const Signup = () => {
     );
     frm.append("profile", imageFile);
 
-    await dispatch(userActions.SignUpDB(frm)).then(() => navigate("/login"));
+    await dispatch(userActions.SignUpDB(frm));
   };
 
   const pwdCheck = () => {
