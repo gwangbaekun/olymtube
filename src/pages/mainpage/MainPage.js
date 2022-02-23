@@ -14,9 +14,9 @@ function MainPage() {
   const dispatch = useDispatch();
   const id = params.id;
   const videos = useSelector((state) => state.video.list);
-  const is_loading = useSelector((state) => state.video.is_loading);
   const user_info = useSelector((state) => state.user.userinfo);
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState([]);
+  const [showVideos, setShowVideos] = useState([]);
 
   useEffect(() => {
     if (id === "trends") {
@@ -28,19 +28,27 @@ function MainPage() {
       const _video = videos.filter(
         (e) => e.videoUserResponseDto.username == user_info?.username
       );
-      dispatch(videoActions.setVideo(_video));
-      console.log(_video);
+      setShowVideos(_video);
+    } else if (id === "sub") {
+      const _video = videos.filter((e) => category.includes(e.categoryNumber));
+      setShowVideos(_video);
     } else if (id === undefined) {
       dispatch(videoActions.setVideoDB());
     }
   }, [id]);
 
   useEffect(() => {
-    category__list.map((e, i) => {
-      const _video = videos.filter((e) => e.categoryNumber == i);
-      dispatch(videoActions.setVideo(_video));
+    let subscribes = [];
+    apis.subscribes().then((res) => {
+      res.data.map((e) => subscribes.push(e.categoryNumber));
+      setCategory(subscribes);
     });
-  }, [category]);
+
+    // category__list.map((e, i) => {
+    //   const _video = videos.filter((e) => e.categoryNumber == i);
+    //   dispatch(videoActions.setVideo(_video));
+    // });
+  }, []);
 
   return (
     <>
@@ -49,24 +57,49 @@ function MainPage() {
         {/* {isLoading ? (
           <CircularProgress className="loading" color="secondary" />
         ) : null} */}
-        <div className="recommendedvideos__videos">
-          {videos.map((item) => {
-            return (
-              <VideoCard
-                id={item.video_id}
-                key={item.video_id + item.title}
-                title={item.title}
-                image={item.img}
-                views={item.views}
-                likes={item.likes}
-                createTime={item.createdAt}
-                category={item.category_img}
-                username={item.videoUserResponseDto?.username}
-                profile={item.videoUserResponseDto?.profile}
-              />
-            );
-          })}
-        </div>
+        {id === "sub" || id === "myvideo" ? (
+          <>
+            <div className="recommendedvideos__videos">
+              {showVideos.map((item) => {
+                return (
+                  <VideoCard
+                    id={item.video_id}
+                    key={item.video_id + item.title}
+                    title={item.title}
+                    image={item.img}
+                    views={item.views}
+                    likes={item.likes}
+                    createTime={item.createdAt}
+                    category={item.category_img}
+                    username={item.videoUserResponseDto?.username}
+                    profile={item.videoUserResponseDto?.profile}
+                  />
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="recommendedvideos__videos">
+              {videos.map((item) => {
+                return (
+                  <VideoCard
+                    id={item.video_id}
+                    key={item.video_id + item.title}
+                    title={item.title}
+                    image={item.img}
+                    views={item.views}
+                    likes={item.likes}
+                    createTime={item.createdAt}
+                    category={item.category_img}
+                    username={item.videoUserResponseDto?.username}
+                    profile={item.videoUserResponseDto?.profile}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </>
   );

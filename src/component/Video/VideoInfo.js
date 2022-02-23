@@ -21,7 +21,6 @@ const VideoInfo = ({
   const [subClick, setSubClick] = useState(false);
   const [sub, setSub] = useState([]);
   const [user_info, setUser_info] = useState({});
-  console.log(user_info.userCategoryResponseDtoList);
 
   const handleSubClick = () => {
     setSubClick((prev) => !prev);
@@ -35,6 +34,8 @@ const VideoInfo = ({
       setUser_info(res.data);
     });
   }, [sub]);
+
+  console.log(user_info.userCategoryResponseDtoList);
 
   return (
     <div className="videoinfo">
@@ -63,7 +64,9 @@ const VideoInfo = ({
             onClick={handleSubClick}
             className={
               subClick ||
-              user_info.userCategoryResponseDtoList?.categoryNumber === category
+              user_info.userCategoryResponseDtoList?.map(
+                (e) => e.categoryNumber == category
+              )
                 ? "videoinfo__subscribe__true"
                 : "videoinfo__subscribe__false"
             }
