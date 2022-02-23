@@ -41,6 +41,12 @@ function MainPage() {
     //   })
   }, [id]);
 
+  useEffect(() => {
+    const _videos = { ...videos };
+    console.log(_videos);
+    // dispatch(videoActions.setVideo(_videos));
+  }, [videos]);
+
   return (
     <>
       <div className="recommendedvideos">
