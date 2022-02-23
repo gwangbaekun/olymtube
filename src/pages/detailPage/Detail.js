@@ -22,7 +22,7 @@ function Detail() {
     });
     // videoId 로 요청하기
   }, []);
-  console.log(videoInfo.videoUrl);
+  console.log(videoInfo);
   return (
     <>
       <div className="videoplayer">
@@ -32,12 +32,15 @@ function Detail() {
           </div>
           <div className="videoplayer__videoinfo">
             <VideoInfo
+              id={videoInfo.video_id}
               title={videoInfo.title}
-              username={videoInfo.username}
-              profile={videoInfo.profile}
+              username={videoInfo.videoUserResponseDto?.username}
+              profile={videoInfo.videoUserResponseDto?.profile}
               views={videoInfo.views}
               likes={videoInfo.likes}
               createdAt={videoInfo.createdAt}
+              category={videoInfo.category}
+              category_img={videoInfo.category_img}
             />
           </div>
         </div>

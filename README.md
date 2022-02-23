@@ -6,7 +6,7 @@
 
 동영상 스트리밍 서비스 제공 사이트 YOUTUBE를 클론 코딩하였습니다.
 사이트에서 인식한 문제점을 코드로 개선하려고 노력하였습니다.
-클라우드 서버를 이용하지 않고 동영상 파일을 저장하였습니다.(추후 이용)
+클라우드 서버를 이용하지 않고 동영상 파일을 저장하였습니다.
 
 # FLIX Project Front-end/Back-end 소개
 
@@ -24,16 +24,17 @@
 ## 📍 기술스택
 
 - Javascript (ES6+)
-- React with Hooks, React Router
-- styled-components
+- React with Hooks
+- React Router Dom
 - redux
 - redux-thunk
 - redux-actions
 - react-player
 - axios
+- immer
+- image-thumbnail
 <!-- - connected-react-router 사용하지 않았음 react-router-dom v6로 충분히 대체 가능-->
 - react-youtube
-- mui
 
 ### 협업도구
 

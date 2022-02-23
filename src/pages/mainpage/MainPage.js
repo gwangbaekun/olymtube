@@ -26,7 +26,7 @@ function MainPage() {
       dispatch(videoActions.setVideo(_video));
     } else if (id === "myvideo") {
       const _video = videos.filter(
-        (e) => e.videoUserResponseDto?.username == user_info?.username
+        (e) => e.videoUserResponseDto.username == user_info?.username
       );
       dispatch(videoActions.setVideo(_video));
       console.log(_video);
@@ -60,9 +60,11 @@ function MainPage() {
                 title={item.title}
                 image={item.img}
                 views={item.views}
+                likes={item.likes}
                 createTime={item.createdAt}
-                username={item.username}
-                profile={item.profile}
+                category={item.category_img}
+                username={item.videoUserResponseDto?.username}
+                profile={item.videoUserResponseDto?.profile}
               />
             );
           })}

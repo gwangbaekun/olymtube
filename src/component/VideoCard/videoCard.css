@@ -36,3 +36,14 @@
 .videocard__text > * {
   margin: 1px;
 }
+
+.videocard__category {
+  float: right;
+  width: 20px;
+  height: 30px;
+}
+
+.video__master {
+  margin-right: 15px;
+  display: flex;
+}

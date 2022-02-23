@@ -68,7 +68,10 @@ const loginDB = (user_data) => {
       .login(user_data)
       .then((res) => {
         const token = res.data.token;
-        setCookie("is_login", token);
+        if (!getCookie("is_login")) {
+          setCookie("is_login", token);
+        } else {
+        }
 
         apis
           .userInfo(token)

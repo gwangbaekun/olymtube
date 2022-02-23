@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
-
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

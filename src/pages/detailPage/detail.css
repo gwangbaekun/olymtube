@@ -11,7 +11,7 @@
 
 .videoplayer__video,
 .videoplayer__videoinfo {
-  margin-right: 5%;
+  margin: 10px 20px;
 }
 
 .videoplayer__suggested {

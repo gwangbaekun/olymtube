@@ -53,10 +53,18 @@ function Header() {
 
         <div className="header__right">
           <div className="header__icon">
-            <BsFillCameraVideoFill onClick={handleOpen} />
-            <AddVideo open={open} handleClose={handleClose} />
-
-            <IoIosNotifications />
+            <BsFillCameraVideoFill
+              style={{ marginTop: "10px", marginRight: "30px" }}
+              onClick={handleOpen}
+            />
+            <AddVideo
+              style={{ marginTop: "10px", marginRight: "30px" }}
+              open={open}
+              handleClose={handleClose}
+            />
+            <IoIosNotifications
+              style={{ marginTop: "10px", marginRight: "30px" }}
+            />
             {is_login ? (
               <div className="header__profile">
                 <Avatar
