@@ -85,9 +85,9 @@ const loginDB = (user_data) => {
               ),
             window.location.replace("/")
           )
-          .catch((error) => console.log(error));
+          .catch((err) => console.log(err));
       })
-      .catch((error) => console.log(""));
+      .catch((err) => window.alert("아이디와 비밀번호를 확인하세요"));
   };
 };
 

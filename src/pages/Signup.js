@@ -6,6 +6,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as imageActions } from "../redux/modules/image";
 import axios from "axios";
+import { apis } from "../shared/api";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Signup = () => {
   const pwdCheckRef = React.useRef(null);
   const fileInput = React.useRef();
   const [imageFile, setImageFile] = useState(null);
+  const [message, setMessage] = useState("");
 
   const preview = useSelector((state) => state.image.preview);
 
@@ -31,6 +33,10 @@ const Signup = () => {
   };
 
   const goSignup = async () => {
+    if (pwdRef.current.value !== pwdCheckRef.current.value) {
+      return setMessage("비밀번호가 틀립니다.");
+    }
+
     const user_info = {
       username: nameRef.current.value,
       password: pwdRef.current.value,
@@ -45,15 +51,26 @@ const Signup = () => {
     );
     frm.append("profile", imageFile);
 
-    await dispatch(userActions.SignUpDB(frm));
+    dispatch(userActions.SignUpDB(frm));
   };
 
-  const pwdCheck = () => {
-    if (pwdRef.current.value !== pwdCheckRef.current.value) {
-      console.log("중복체크기능 - 나중");
-    } else {
-      console.log("중복체크기능 - 나중");
-    }
+  const idCheck = () => {
+    // apis.check(nameRef).then((res) => {
+    //   console.log(res);
+    // });
+    // if (pwdRef.current.value !== pwdCheckRef.current.value) {
+    // } else {
+    //   console.log("중복체크기능 - 나중");
+    // }
+    apis
+      .check(nameRef.current.value)
+      .then((res) => {
+        setMessage(res.data.msg);
+        console.log(message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -65,14 +82,17 @@ const Signup = () => {
         </div>
         <div className="signup__input__box">
           <div className="signup__input">
+            <span style={{ color: "red", fontSize: "12px" }}>{message}</span>
             <div className="signup__box">
-              <input
-                className="signup__text"
-                type="text"
-                ref={nameRef}
-                placeholder="아이디를 입력해주세요"
-              />
-              <button className="signup__double" onClick={pwdCheck}>
+              <div style={{ flexDirection: "column" }}>
+                <input
+                  className="signup__text"
+                  type="text"
+                  ref={nameRef}
+                  placeholder="아이디를 입력해주세요"
+                />
+              </div>
+              <button className="signup__double" onClick={idCheck}>
                 중복체크
               </button>
             </div>

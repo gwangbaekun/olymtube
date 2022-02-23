@@ -1,28 +1,33 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Video from "../../component/Video/Video";
 import VideoInfo from "../../component/Video/VideoInfo";
 import VideoRow from "../../component/videoRow/VideoRow";
+import { actionCreators as videoActions } from "../../redux/modules/video";
+import { apis } from "../../shared/api";
 import SubscribePage from "../subPage/SubscribePage";
 import "./detail.css";
 
 function Detail() {
   let params = useParams();
+  const [videoInfo, setVideo] = useState([]);
+  console.log(videoInfo);
+  // const videoInfo = useSelector((state) => state.video.list[params.id]);
 
-  const videoInfo = useSelector((state) => state.video.list[params.id]);
-
-  useEffect(() => {
-    console.log("axios, 유저가 구독하고 있는 category 영상");
+  useEffect(async () => {
+    await apis.getVideo(params.id).then((res) => {
+      setVideo(res.data);
+    });
     // videoId 로 요청하기
-  });
+  }, []);
 
   return (
     <>
       <div className="videoplayer">
         <div className="videoplayer__videodetails">
           <div className="videoplayer__video">
-            <Video videoId={params.id} />
+            <Video videoUrl={videoInfo.videoUrl} />
           </div>
           <div className="videoplayer__videoinfo">
             <VideoInfo

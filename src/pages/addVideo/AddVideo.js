@@ -64,7 +64,7 @@ function AddVideo(props) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState(0);
   const video = useSelector((state) => state.image.videoPreview);
-  const img = useSelector((state) => state.image.preview);
+  const [img, setImg] = useState();
   const [file, setFile] = useState("");
   const videoFile = React.useRef();
   const handleChange = (event) => {
@@ -78,6 +78,7 @@ function AddVideo(props) {
 
   const videoInput = (e) => {
     dispatch(previewActions.setVideoPreview(videoFile.current.files[0]));
+    console.log(video);
     setFile(videoFile.current.files[0]);
     setPage(1);
   };
@@ -96,6 +97,7 @@ function AddVideo(props) {
   };
 
   const handleSubmitVideo = (e) => {
+    console.log(img, file);
     const contents = {
       title: title,
       category: category,
@@ -106,7 +108,7 @@ function AddVideo(props) {
       new Blob([JSON.stringify(contents)], { type: "application/json" })
     );
     frm.append("img", img);
-    frm.append("video", video);
+    frm.append("video", file);
     dispatch(videoActions.addVideoDB(frm));
   };
 
@@ -268,20 +270,20 @@ function AddVideo(props) {
                   label="category"
                   sx={{ m: 1, minWidth: 80 }}
                 >
-                  <MenuItem value={0}>봅슬레이</MenuItem>
-                  <MenuItem value={1}>스노우보드 </MenuItem>
-                  <MenuItem value={2}>스피드 스케이팅</MenuItem>
-                  <MenuItem value={3}>스키점프 </MenuItem>
-                  <MenuItem value={4}>스켈레톤</MenuItem>
-                  <MenuItem value={5}>쇼트트랙 스피드 스케이팅</MenuItem>
-                  <MenuItem value={6}>아이스하키</MenuItem>
-                  <MenuItem value={7}>컬링</MenuItem>
-                  <MenuItem value={8}>피겨 스케이팅</MenuItem>
-                  <MenuItem value={9}>프리스타일 스키</MenuItem>
+                  <MenuItem value={1}>봅슬레이</MenuItem>
+                  <MenuItem value={2}>스노우보드 </MenuItem>
+                  <MenuItem value={3}>스피드 스케이팅</MenuItem>
+                  <MenuItem value={4}>스키점프 </MenuItem>
+                  <MenuItem value={5}>스켈레톤</MenuItem>
+                  <MenuItem value={6}>쇼트트랙 스피드 스케이팅</MenuItem>
+                  <MenuItem value={7}>아이스하키</MenuItem>
+                  <MenuItem value={8}>컬링</MenuItem>
+                  <MenuItem value={9}>피겨 스케이팅</MenuItem>
+                  <MenuItem value={10}>프리스타일 스키</MenuItem>
                 </Select>
               </FormControl>
-              <div>
-                <GetThumbnail video={file} />
+              <div style={{ display: "flex" }}>
+                <GetThumbnail setImg={setImg} video={file} />
               </div>
             </div>
 
