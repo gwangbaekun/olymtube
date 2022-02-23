@@ -72,7 +72,7 @@ export default function GetThumbnail(props) {
 
   useEffect(() => {
     if (imgSrc) {
-      dataURLtoFile(imgSrc, "videosdkafj");
+      dataURLtoFile(imgSrc, "thumbnail.png");
     }
   }, [imgSrc]);
 

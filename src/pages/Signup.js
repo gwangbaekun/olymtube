@@ -31,6 +31,7 @@ const Signup = () => {
       setImageFile(file);
     }
   };
+  console.log(imageFile);
 
   const goSignup = async () => {
     if (pwdRef.current.value !== pwdCheckRef.current.value) {

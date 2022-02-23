@@ -16,6 +16,7 @@ const VideoCard = ({
   const handleClick = () => {
     navigate(`/video/${id}`);
   };
+  console.log(image);
   return (
     <div onClick={handleClick} className="videocard">
       <img className="videocard__image" src={image} alt="" />

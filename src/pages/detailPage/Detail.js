@@ -17,11 +17,12 @@ function Detail() {
 
   useEffect(async () => {
     await apis.getVideo(params.id).then((res) => {
+      console.log(res);
       setVideo(res.data);
     });
     // videoId 로 요청하기
   }, []);
-
+  console.log(videoInfo.videoUrl);
   return (
     <>
       <div className="videoplayer">

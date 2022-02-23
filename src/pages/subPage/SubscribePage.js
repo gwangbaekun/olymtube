@@ -4,17 +4,19 @@ import VideoRow from "../../component/videoRow/VideoRow";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdTune } from "react-icons/md";
 import { FiAlertCircle } from "react-icons/fi";
+import { apis } from "../../shared/api";
+import { actionCreators as videoActions } from "../../redux/modules/video";
 
 const SearchPage = (props) => {
   let { searchQuery } = useParams();
+  const dispatch = useDispatch();
 
   const userCategoryResponseDtoList = useSelector(
     (state) => state.user.userinfo.userCategoryResponseDtoList
   );
-  console.log(userCategoryResponseDtoList);
   const videoRow = useSelector((state) => state.video.list);
 
   // const userSubVideo =
@@ -24,7 +26,13 @@ const SearchPage = (props) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    console.log("axios");
+    apis.get().then((res) => {
+      // userCategoryResponseDtoList.map(category => {
+
+      //   res.data.filter((e) => e.)
+      // })
+      dispatch(videoActions.setVideoDB());
+    });
   }, []);
 
   if (isError) {

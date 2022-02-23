@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Category from "../../component/category/Category";
+import Category, { category__list } from "../../component/category/Category";
 import VideoCard from "../../component/VideoCard/VideoCard";
 import video, {
   actionCreators as videoActions,
@@ -15,42 +15,39 @@ function MainPage() {
   const id = params.id;
   const videos = useSelector((state) => state.video.list);
   const is_loading = useSelector((state) => state.video.is_loading);
+  const user_info = useSelector((state) => state.user.userinfo);
+  const [category, setCategory] = useState(0);
+
   useEffect(() => {
     if (id === "trends") {
-      // video sort
+      let __video = [];
+      videos.map((e) => __video.push(e));
+      const _video = __video.sort((a, b) => b.views - a.views);
+      dispatch(videoActions.setVideo(_video));
     } else if (id === "myvideo") {
-      const _video = videos.filter((e) => e.username == "소영");
+      const _video = videos.filter(
+        (e) => e.videoUserResponseDto?.username == user_info?.username
+      );
       dispatch(videoActions.setVideo(_video));
       console.log(_video);
     } else if (id === undefined) {
       dispatch(videoActions.setVideoDB());
     }
-    // dispatch(videoActions.setVideo({ videos, is_loading }));
-    // dispatch(videoActions.setVideo());
-    // 시간순 sort
-    // 만약 파라미터가 trend -> 좋아요순 sort
-    // 만약 파라미터가 yourvideos -> 내꺼만
-    // dispatch 로 setvideo 불러오기
-    // axios
-    //   .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=9&regionCode=PK&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
-    //   .then(response => {
-    //     console.log(response.data.items);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   })
   }, [id]);
 
   useEffect(() => {
-    const _videos = { ...videos };
-    console.log(_videos);
-    // dispatch(videoActions.setVideo(_videos));
-  }, [videos]);
+    category__list.map((e, i) => {
+      const _video = videos.filter((e) => e.categoryNumber == i);
+      dispatch(videoActions.setVideo(_video));
+    });
+  }, [category]);
+
+  console.log(videos);
 
   return (
     <>
       <div className="recommendedvideos">
-        <Category />
+        <Category setCategory={setCategory} />
         {/* {isLoading ? (
           <CircularProgress className="loading" color="secondary" />
         ) : null} */}
