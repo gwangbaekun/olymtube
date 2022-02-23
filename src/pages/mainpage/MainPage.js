@@ -42,8 +42,6 @@ function MainPage() {
     });
   }, [category]);
 
-  console.log(videos);
-
   return (
     <>
       <div className="recommendedvideos">

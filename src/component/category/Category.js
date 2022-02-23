@@ -27,6 +27,13 @@ function Category(props) {
     setCategory(e.currentTarget.id);
   };
 
+  const scrollRef = React.useRef();
+  const scollToMyRef = () => {
+    const scroll =
+      scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+    scrollRef.current.scrollTo(0, scroll);
+  };
+
   return (
     <>
       <hr />

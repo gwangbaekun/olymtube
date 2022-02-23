@@ -1,11 +1,9 @@
 import React from "react";
-import YouTube from "react-youtube";
 import ReactPlayer from "react-player";
 import "./_video.css";
 
 const Video = (props) => {
   console.log(props);
-  const opts = {};
 
   return (
     <div className="player-wrapper">

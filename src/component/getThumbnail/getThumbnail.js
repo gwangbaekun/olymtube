@@ -1,10 +1,5 @@
-import { getFunctionName } from "@mui/utils/getDisplayName";
 import React, { useEffect } from "react";
 import { useRef, useState } from "react";
-import ReactPlayer from "react-player";
-import { useDispatch, useSelector } from "react-redux";
-import YouTube from "react-youtube";
-import { actionCreators as imageActions } from "../../redux/modules/image";
 // import Thumbnail from "./Thumbnail";
 // 1. Make sure user is uploading a video
 // This is already checked in the Illfact videoupload
@@ -13,7 +8,6 @@ import { actionCreators as imageActions } from "../../redux/modules/image";
 // 3. You have to get the file URL with the Form Apped
 
 export default function GetThumbnail(props) {
-  const dispatch = useDispatch();
   const file = props.video;
   console.log(props.setImg);
   const videoElem = useRef();
@@ -48,26 +42,6 @@ export default function GetThumbnail(props) {
 
     // setImgSrc(canvas.toDataURL(), "image.jpg");
     setImgSrc(canvas.toDataURL());
-    console.log(imgSrc);
-    // fetch(imgSrc)
-    //   .then((res) => res.blob())
-    //   .then((blob) => {
-    //     const NewFile = new File([blob], "video_thumbnail.jpg", {
-    //       type: "image/jpg",
-    //     });
-    //     console.log(NewFile);
-    //   });
-
-    // dispatch(imageActions.setPreview(imgSrc));
-
-    // .then((res) => res.blob())
-    // .then((blob) => {
-    //   const NewFile = new File([blob], "video_thumbnail", {
-    //     type: "image/jpg",
-    //   });
-    //   console.log(NewFile);
-    //   dispatch(imageActions.setPreview());
-    // });
   };
 
   useEffect(() => {
@@ -79,20 +53,22 @@ export default function GetThumbnail(props) {
   return (
     <>
       {file ? (
-        <video
-          style={{ width: "300px", height: "168px" }}
-          id="video"
-          className="w-100"
-          ref={videoElem}
-          src={URL.createObjectURL(file)}
-          type="video/mp4"
-          controls
-        ></video>
+        <div className="video">
+          <video
+            style={{ width: "300px", height: "168px" }}
+            id="video"
+            className="w-100"
+            ref={videoElem}
+            src={URL.createObjectURL(file)}
+            type="video/mp4"
+            controls
+          ></video>
+        </div>
       ) : (
         ""
       )}
       {imgSrc ? (
-        <div>
+        <div className="video__thumbnail">
           <img
             ref={imageInput}
             style={{ width: "300px", height: "168px" }}
@@ -104,7 +80,17 @@ export default function GetThumbnail(props) {
       ) : (
         ""
       )}
-      <button onClick={captureThumbnail}>Capture image</button>
+      <button
+        style={{
+          width: "90px",
+          height: "40px",
+          backgroundColor: "#3EA6FF",
+          borderRadius: "3px",
+        }}
+        onClick={captureThumbnail}
+      >
+        Capture image
+      </button>
     </>
   );
 }

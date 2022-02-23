@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SideBarRow = ({ selected, img, title }) => {
   const navigate = useNavigate();
-
+  console.log(selected, img, title);
   const handleClick = () => {
     navigate(`sub/${title}`);
   };

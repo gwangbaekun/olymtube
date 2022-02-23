@@ -13,12 +13,10 @@ import AddVideo from "../../pages/addVideo/AddVideo";
 function Header() {
   const user_info = useSelector((state) => state.user.userinfo);
   const is_login = useSelector((state) => state.user.is_login);
-  console.log(user_info);
   const [menu, setMenu] = useState(true);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(is_login);
 
   let navigate = useNavigate();
 

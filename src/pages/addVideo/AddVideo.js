@@ -146,7 +146,6 @@ function AddVideo(props) {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-
                   width: "150",
                   height: "150",
                 }}
@@ -257,7 +256,7 @@ function AddVideo(props) {
               </Box>
             </div>
             <div style={{ marginTop: "50px" }}>
-              <FormControl sx={{ minWidth: 80 }}>
+              <FormControl sx={{ minWidth: "45ch" }}>
                 <InputLabel id="demo-simple-select-autowidth-label">
                   category
                 </InputLabel>
@@ -268,7 +267,7 @@ function AddVideo(props) {
                   onChange={handleChange}
                   autoWidth
                   label="category"
-                  sx={{ m: 1, minWidth: 80 }}
+                  sx={{ m: 1, minWidth: "45ch" }}
                 >
                   <MenuItem value={1}>봅슬레이</MenuItem>
                   <MenuItem value={2}>스노우보드 </MenuItem>
@@ -282,7 +281,7 @@ function AddVideo(props) {
                   <MenuItem value={10}>프리스타일 스키</MenuItem>
                 </Select>
               </FormControl>
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", marginTop: "20px" }}>
                 <GetThumbnail setImg={setImg} video={file} />
               </div>
             </div>

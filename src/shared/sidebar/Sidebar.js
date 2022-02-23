@@ -7,15 +7,17 @@ import { GiCampfire } from "react-icons/gi";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Category from "../category/Category";
+import { category__list } from "../../component/category/Category";
 
 const SideBar = () => {
   const navigate = useNavigate();
-  const category = useSelector(
-    (state) => state.user.userinfo.userCategoryResponseDtoList
-  );
-  console.log(category);
+  const user_info = useSelector((state) => state.user.userinfo);
+  const category_list = user_info.userCategoryResponseDtoList;
+  console.log(category_list[0]?.category_img);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // const _category = category.category_img?.split("/");
+  }, []);
 
   return (
     <>
@@ -33,9 +35,13 @@ const SideBar = () => {
         <Link to="sub">
           <SideBarRow Icon={MdSubscriptions} title="Subscription" />
         </Link>
-        {category.map((e) => {
+        {category_list.map((e) => {
           return (
-            <Category key={e.id} _onClick img={e.img} title={e.category} />
+            <Category
+              key={e.id + e.img}
+              img={e.category_img}
+              title={category__list[e.categoryNumber]}
+            />
           );
         })}
         <hr />

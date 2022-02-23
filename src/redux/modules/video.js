@@ -68,9 +68,14 @@ const setVideoDB = () => {
 
 const addVideoDB = (frm) => {
   return async function (dispatch, getState) {
-    apiForms.upload(frm).then((res) => {
-      console.log(res);
-    });
+    apiForms
+      .upload(frm)
+      .then((res) => {
+        window.location.replace("/");
+      })
+      .catch((error) => {
+        window.alert("동영상을 업로드 할 수가 없습니다.");
+      });
   };
 };
 

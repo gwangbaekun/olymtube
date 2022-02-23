@@ -16,7 +16,7 @@
 
 .videoplayer__suggested {
   flex: 0.2;
-  margin-top: 0 !important;
+  margin: 10px 20px !important;
 }
 
 .videoplayer__videoinfo {
