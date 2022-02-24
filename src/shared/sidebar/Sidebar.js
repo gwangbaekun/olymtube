@@ -13,13 +13,14 @@ const SideBar = () => {
   const navigate = useNavigate();
   const user_info = useSelector((state) => state.user.userinfo);
   console.log(user_info);
-  const category_list = user_info.userCategoryResponseDtoList;
+  const category = user_info.userCategoryResponseDtoList;
 
-  console.log(category_list);
+  const [category_list, setCategory_list] = useState([]);
 
   useEffect(() => {
     // const _category = category.category_img?.split("/");
-  }, []);
+    setCategory_list(category);
+  }, [category_list]);
 
   return (
     <>

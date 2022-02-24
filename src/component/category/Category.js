@@ -5,8 +5,8 @@ import "./_category.css";
 
 export const category__list = [
   "전체",
-  "스피드스케이팅",
   "봅슬레이",
+  "스피드스케이팅",
   "스노보드",
   "스키점프",
   "스켈레톤",

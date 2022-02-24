@@ -34,7 +34,7 @@ export const apis = {
   check: (username) => api.post(`/checkId`, { username: username }),
 
   get: () => api.get("/video"),
-  getVideo: (video_id) => api.get(`video/${video_id}`),
+  getVideo: (video_id) => api.get(`/video/${video_id}`),
   subscribe: (video_id) => api.post(`/subscribe/${video_id}`),
   subscribes: () => api.get("/subscribes"),
   // myVideo: () => api.get(`/myvideo/${user_id}`),

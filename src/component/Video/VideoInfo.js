@@ -13,29 +13,35 @@ const VideoInfo = ({
   username,
   profile,
   views,
-  likes,
-  createdAt,
   category,
   category_img,
 }) => {
   const [subClick, setSubClick] = useState(false);
   const [sub, setSub] = useState([]);
   const [user_info, setUser_info] = useState({});
+  const [userCategory, setUserCategory] = useState([]);
 
   const handleSubClick = () => {
     setSubClick((prev) => !prev);
     apis.subscribe(id).then((res) => console.log(res));
   };
 
-  const handleLike = () => {};
-
   useEffect(() => {
     apis.userInfo().then((res) => {
       setUser_info(res.data);
     });
+    apis
+      .subscribes()
+      .then((res) => {
+        setUserCategory(res.data);
+      })
+      .then((userCategory) => {
+        let userSub = [];
+        console.log(userCategory);
+      });
   }, [sub]);
 
-  console.log(user_info.userCategoryResponseDtoList);
+  console.log(category);
 
   return (
     <div className="videoinfo">
@@ -63,15 +69,12 @@ const VideoInfo = ({
           <button
             onClick={handleSubClick}
             className={
-              subClick ||
-              user_info.userCategoryResponseDtoList?.map(
-                (e) => e.categoryNumber == category
-              )
+              subClick
                 ? "videoinfo__subscribe__true"
                 : "videoinfo__subscribe__false"
             }
           >
-            subscribe
+            구독
           </button>
         </div>
       </div>

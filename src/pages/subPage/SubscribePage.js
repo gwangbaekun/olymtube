@@ -6,19 +6,18 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiAlertCircle } from "react-icons/fi";
+import { apis } from "../../shared/api";
+import { actionCreators as videoActions } from "../../redux/modules/video";
 
-const SearchPage = (props) => {
-  const params = useParams();
+const SubscribePage = (props) => {
   const thisVideoId = props.id;
-  const thisVideoCategory = props.category;
+  const sameCategory = props.sameCategory;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [video, setVideo] = useState([]);
+  const videoList = useSelector((state) => state.video.list);
 
-  const userCategoryResponseDtoList = useSelector(
-    (state) => state.user.userinfo.userCategoryResponseDtoList
-  );
-  const video = useSelector((state) => state.video.list);
-  const [showVideo, setShowVideo] = useState([]);
+  const [showVideo, setShowVideo] = useState(videoList);
   const [isError, setIsError] = useState(false);
 
   const handleClick = (e) => {
@@ -26,13 +25,14 @@ const SearchPage = (props) => {
   };
 
   useEffect(async () => {
-    let _video = [];
-    video.map((e) =>
-      e.categoryNumber === thisVideoCategory ? _video.push(e) : null
-    );
-    _video.filter((e) => e.id !== thisVideoId);
-    await setShowVideo(_video);
-  }, []);
+    await apis
+      .getVideo(`${thisVideoId}`)
+      .then((res) => {
+        setShowVideo(res.data.sameCategoryVideoResponseDtos);
+        dispatch(videoActions.setVideo(res.data.sameCategoryVideoResponseDtos));
+      })
+      .then((res) => {});
+  }, [showVideo]);
 
   if (isError) {
     return (
@@ -48,7 +48,7 @@ const SearchPage = (props) => {
         <CircularProgress className="loading" color="secondary" />
       ) : null} */}
 
-      {showVideo?.map((item) => {
+      {showVideo.map((item) => {
         return (
           <div
             id={item.video_id}
@@ -56,15 +56,7 @@ const SearchPage = (props) => {
             to={`${item.video_id}`}
             key={item.video_id}
           >
-            <VideoRow
-              title={item.title}
-              image={item.img}
-              views={item.views}
-              createdAt={item.createdAt}
-              category={item.category}
-              username={item.username}
-              profile={item.profile}
-            />
+            <VideoRow title={item.title} image={item.img} views={item.views} />
           </div>
         );
       })}
@@ -72,4 +64,4 @@ const SearchPage = (props) => {
   );
 };
 
-export default SearchPage;
+export default SubscribePage;

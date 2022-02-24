@@ -9,6 +9,8 @@ import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
 import Figure from "react-bootstrap/Figure";
 import AddVideo from "../../pages/addVideo/AddVideo";
+import { apiForms, apis } from "../api";
+import { deleteCookie } from "../cookie";
 
 function Header() {
   const user_info = useSelector((state) => state.user.userinfo);
@@ -26,6 +28,11 @@ function Header() {
 
   const handleMenu = () => {
     setMenu((prev) => !prev);
+  };
+
+  const signout = () => {
+    deleteCookie("is_login");
+    window.location.replace("/");
   };
 
   function login() {
@@ -83,7 +90,17 @@ function Header() {
               </div>
             )}
           </div>
-          <div>{is_login ? null : <div onClick={login}>로그인</div>}</div>
+          <div>
+            {is_login ? (
+              <div style={{ cursor: "pointer" }} onClick={signout}>
+                로그아웃
+              </div>
+            ) : (
+              <div style={{ cursor: "pointer" }} onClick={login}>
+                로그인
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

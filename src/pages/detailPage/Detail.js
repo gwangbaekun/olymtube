@@ -12,7 +12,6 @@ import "./detail.css";
 function Detail() {
   let params = useParams();
   const [videoInfo, setVideo] = useState([]);
-  console.log(videoInfo);
   // const videoInfo = useSelector((state) => state.video.list[params.id]);
 
   useEffect(async () => {
@@ -46,6 +45,7 @@ function Detail() {
         </div>
         <div className="videoplayer__suggested">
           <SubscribePage
+            sameCategory={videoInfo.sameCategoryVideoResponseDtos}
             id={videoInfo.video_id}
             category={videoInfo.category}
           />

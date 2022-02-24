@@ -3,6 +3,9 @@
   background-color: #f9f9f9;
   /* padding: 20px; */
   margin-right: 10px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  height: 800px;
 }
 
 .searchpage__filter {
