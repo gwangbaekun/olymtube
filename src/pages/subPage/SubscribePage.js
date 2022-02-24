@@ -25,13 +25,10 @@ const SubscribePage = (props) => {
   };
 
   useEffect(async () => {
-    await apis
-      .getVideo(`${thisVideoId}`)
-      .then((res) => {
-        setShowVideo(res.data.sameCategoryVideoResponseDtos);
-        dispatch(videoActions.setVideo(res.data.sameCategoryVideoResponseDtos));
-      })
-      .then((res) => {});
+    await apis.getVideo(`${thisVideoId}`).then((res) => {
+      setShowVideo(res.data.sameCategoryVideoResponseDtos);
+      dispatch(videoActions.setVideo(res.data.sameCategoryVideoResponseDtos));
+    });
   }, [showVideo]);
 
   if (isError) {

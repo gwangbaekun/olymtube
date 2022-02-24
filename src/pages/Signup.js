@@ -38,6 +38,10 @@ const Signup = () => {
       return setMessage("비밀번호가 틀립니다.");
     }
 
+    if (nameRef.current.value.length < 3) {
+      return setMessage("아이디가 너무 짧습니다.");
+    }
+
     const user_info = {
       username: nameRef.current.value,
       password: pwdRef.current.value,
