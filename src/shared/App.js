@@ -33,7 +33,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route
-          path="/*"
+          path="/"
           element={
             <div className="app__mainpage">
               <SideBar />
@@ -60,7 +60,7 @@ function App() {
             }
           />
         </Route>
-        <Route
+        {/* <Route
           path="sub"
           element={
             <div className="app__mainpage">
@@ -69,15 +69,7 @@ function App() {
             </div>
           }
         >
-          {/* <Route
-            path=":id"
-            element={
-              <div className="app__mainpage">
-                <SubscribePage />
-              </div>
-            }
-          /> */}
-        </Route>
+        </Route> */}
       </Routes>
     </div>
   );

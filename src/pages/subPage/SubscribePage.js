@@ -3,36 +3,35 @@ import "./subscribePage.css";
 import VideoRow from "../../component/videoRow/VideoRow";
 import { useParams } from "react-router";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { MdTune } from "react-icons/md";
 import { FiAlertCircle } from "react-icons/fi";
-import { apis } from "../../shared/api";
-import { actionCreators as videoActions } from "../../redux/modules/video";
 
 const SearchPage = (props) => {
-  let { searchQuery } = useParams();
+  const params = useParams();
+  const thisVideoId = props.id;
+  const thisVideoCategory = props.category;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userCategoryResponseDtoList = useSelector(
     (state) => state.user.userinfo.userCategoryResponseDtoList
   );
-  const videoRow = useSelector((state) => state.video.list);
-
-  // const userSubVideo =
-
-  const [channelRow, setChannelRow] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const video = useSelector((state) => state.video.list);
+  const [showVideo, setShowVideo] = useState([]);
   const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    apis.get().then((res) => {
-      // userCategoryResponseDtoList.map(category => {
+  const handleClick = (e) => {
+    navigate(`${e.currentTarget.id}`);
+  };
 
-      //   res.data.filter((e) => e.)
-      // })
-      dispatch(videoActions.setVideoDB());
-    });
+  useEffect(async () => {
+    let _video = [];
+    video.map((e) =>
+      e.categoryNumber === thisVideoCategory ? _video.push(e) : null
+    );
+    _video.filter((e) => e.id !== thisVideoId);
+    await setShowVideo(_video);
   }, []);
 
   if (isError) {
@@ -42,14 +41,21 @@ const SearchPage = (props) => {
       </FiAlertCircle>
     );
   }
+
   return (
     <div className="searchpage">
       {/* {isLoading ? (
         <CircularProgress className="loading" color="secondary" />
       ) : null} */}
-      {videoRow.map((item) => {
+
+      {showVideo?.map((item) => {
         return (
-          <Link key={item.video_id} to={`/video/${item.video_id}`}>
+          <div
+            id={item.video_id}
+            onClick={handleClick}
+            to={`${item.video_id}`}
+            key={item.video_id}
+          >
             <VideoRow
               title={item.title}
               image={item.img}
@@ -59,7 +65,7 @@ const SearchPage = (props) => {
               username={item.username}
               profile={item.profile}
             />
-          </Link>
+          </div>
         );
       })}
     </div>

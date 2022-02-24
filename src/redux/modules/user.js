@@ -70,7 +70,6 @@ const loginDB = (user_data) => {
         const token = res.data.token;
         if (!getCookie("is_login")) {
           setCookie("is_login", token);
-        } else {
         }
 
         apis
@@ -99,7 +98,7 @@ const loginCheckDB = (Auth) => {
     if (Auth === null) {
       return;
     } else if (Auth) {
-      apis.userInfo(Auth).then((res) => {
+      await apis.userInfo(Auth).then((res) => {
         dispatch(
           setUser(
             {

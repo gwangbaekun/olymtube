@@ -21,7 +21,7 @@ function Detail() {
       setVideo(res.data);
     });
     // videoId 로 요청하기
-  }, []);
+  }, [params.id]);
   console.log(videoInfo);
   return (
     <>
@@ -45,7 +45,10 @@ function Detail() {
           </div>
         </div>
         <div className="videoplayer__suggested">
-          <SubscribePage />
+          <SubscribePage
+            id={videoInfo.video_id}
+            category={videoInfo.category}
+          />
         </div>
       </div>
     </>

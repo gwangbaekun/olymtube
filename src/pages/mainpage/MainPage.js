@@ -16,6 +16,7 @@ function MainPage() {
   const videos = useSelector((state) => state.video.list);
   const user_info = useSelector((state) => state.user.userinfo);
   const [category, setCategory] = useState([]);
+  const [onlyCategory, setOnlyCategory] = useState("0");
   const [showVideos, setShowVideos] = useState([]);
 
   useEffect(() => {
@@ -30,8 +31,11 @@ function MainPage() {
       );
       setShowVideos(_video);
     } else if (id === "sub") {
-      const _video = videos.filter((e) => category.includes(e.categoryNumber));
-      setShowVideos(_video);
+      let __video = [];
+      const _video = videos.filter((e) =>
+        category.includes(e.categoryNumber) ? __video.push(e) : null
+      );
+      setShowVideos(__video);
     } else if (id === undefined) {
       dispatch(videoActions.setVideoDB());
     }
@@ -44,20 +48,24 @@ function MainPage() {
       setCategory(subscribes);
     });
 
-    // category__list.map((e, i) => {
-    //   const _video = videos.filter((e) => e.categoryNumber == i);
-    //   dispatch(videoActions.setVideo(_video));
-    // });
-  }, []);
+    // if (category !== 0) {
+    //   category__list.map((e, i) => {
+    //     const _video = videos.filter((e) => e.categoryNumber == i);
+    //     setShowVideos(_video);
+    //   });
+    // }
+  }, [id]);
+
+  console.log(onlyCategory);
 
   return (
     <>
       <div className="recommendedvideos">
-        <Category setCategory={setCategory} />
+        <Category setShowVideos={setShowVideos} setCategory={setOnlyCategory} />
         {/* {isLoading ? (
           <CircularProgress className="loading" color="secondary" />
         ) : null} */}
-        {id === "sub" || id === "myvideo" ? (
+        {id === "sub" || id === "myvideo" || onlyCategory !== "0" ? (
           <>
             <div className="recommendedvideos__videos">
               {showVideos.map((item) => {

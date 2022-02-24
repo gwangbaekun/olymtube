@@ -12,7 +12,8 @@ const Video = (props) => {
         url={props.videoUrl}
         width="100%"
         height="100%"
-        controls="true"
+        controls={true}
+        playing={true}
       />
     </div>
   );

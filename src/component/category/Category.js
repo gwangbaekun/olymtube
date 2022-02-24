@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as categoryCreators } from "../../redux/modules/video";
 import "./_category.css";
 
@@ -18,8 +18,11 @@ export const category__list = [
 ];
 function Category(props) {
   const setCategory = props.setCategory;
+  const setShowVideos = props.setShowVideos;
+  const video = useSelector((state) => state.video.list);
   const [select, setSelect] = useState("");
   const dispatch = useDispatch();
+  console.log(video);
 
   const handleClick = (e) => {
     dispatch(categoryCreators.selectCategory(e.currentTarget.id));
@@ -27,12 +30,10 @@ function Category(props) {
     setCategory(e.currentTarget.id);
   };
 
-  const scrollRef = React.useRef();
-  const scollToMyRef = () => {
-    const scroll =
-      scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
-    scrollRef.current.scrollTo(0, scroll);
-  };
+  useEffect(() => {
+    const _video = video.filter((e) => e.categoryNumber == select);
+    setShowVideos(_video);
+  }, [select]);
 
   return (
     <>

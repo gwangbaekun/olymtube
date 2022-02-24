@@ -12,8 +12,10 @@ import { category__list } from "../../component/category/Category";
 const SideBar = () => {
   const navigate = useNavigate();
   const user_info = useSelector((state) => state.user.userinfo);
+  console.log(user_info);
   const category_list = user_info.userCategoryResponseDtoList;
-  console.log(category_list[0]?.category_img);
+
+  console.log(category_list);
 
   useEffect(() => {
     // const _category = category.category_img?.split("/");
