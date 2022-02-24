@@ -1,102 +1,76 @@
-# Olymtube Project Front-end/Back-end 소개
+# Youtube-Project
 
-### 동영상 스트리밍 서비스 제공 사이트 YOUTUBE 클론 프로젝트
+# 유투브 클론코딩
 
-## 📍 프로젝트 소개
+# 팀원 정보
 
-동영상 스트리밍 서비스 제공 사이트 YOUTUBE를 클론 코딩하였습니다.
-사이트에서 인식한 문제점을 코드로 개선하려고 노력하였습니다.
-클라우드 서버를 이용하지 않고 동영상 파일을 저장하였습니다.
+![팀원](https://user-images.githubusercontent.com/93329407/155321170-b59d0f13-e9f5-4cd2-a103-c8e3f6a78a5d.png)
 
-# FLIX Project Front-end/Back-end 소개
+# 1. 프로젝트 개요(Project).🎵
 
-### OTT 서비스 제공 사이트 NETFLIX 클론 프로젝트
+## 프로젝트 소개(Introduction).
 
-## 📍 개발 인원 및 기간
+### 📍 프로젝트 소개 동영상 스트리밍 서비스 제공 사이트 YOUTUBE를 클론 코딩하였습니다. 사이트에서 인식한 문제점을 코드로 개선하려고 노력하였습니다.
 
-개발기간 : 2022.02.18 - 2022.02.24
-개발 인원 : 프론트엔드 2명, 백엔드 3명
-개발자
+##### Reference - 이 프로젝트는 [YOUTUBE](https://www.youtube.com) 사이트를 참조하여 학습목적으로 만들었습니다 - 학습수준의 프로젝트로 만들었기 때문에 이 코드 및 데모영상을 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다
 
-- FE: 정소영, 백제열
-- BE: 홍하빈, 고영빈, 진동녁
+# 2. 개발환경( Development).❤️
 
-## 📍 기술스택
+### 와이어 프레임(Wireframe)
 
-- Javascript (ES6+)
-- React with Hooks
-- React Router Dom
-- redux
-- redux-thunk
-- redux-actions
-- react-player
-- axios
-- immer
-- image-thumbnail
-<!-- - connected-react-router 사용하지 않았음 react-router-dom v6로 충분히 대체 가능-->
-- react-youtube
+![팀원3](https://user-images.githubusercontent.com/93329407/155322150-a1cdfadc-e08c-4fb4-b24c-b484a4563fcc.png)
+![팀원1](https://user-images.githubusercontent.com/93329407/155321881-be870521-06a3-447d-8771-391c62f0f864.png)
+![팀원2](https://user-images.githubusercontent.com/93329407/155321899-6df41873-195c-4346-9e16-4e40db130fde.png)
 
-### 협업도구
+## API 설계(API Table)
 
-- Slack
-- Git & Github
-<!-- - Trello -->
-- POSTMAN
+![111111](https://user-images.githubusercontent.com/93329407/155322371-ca154bd6-305b-4111-bf83-c6cc59e1a239.png)
 
-## 📍 시연 영상
+## 테이블 도표(Entity Diagram)
 
-<a href="">시연 영상 보러가기</a>
+![도표](https://user-images.githubusercontent.com/45589210/155321852-1238f21d-d341-4d81-920a-f4d9d35f22a3.png)
 
-##### Reference
+# 3. 기술 스택(Tech Stack).🙅🏻‍♂️
 
-- 이 프로젝트는 [YOUTUBE](https://www.youtube.com) 사이트를 참조하여 학습목적으로 만들었습니다
-- 학습수준의 프로젝트로 만들었기 때문에 이 코드 및 데모영상을 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다
+- 로그인, 회원가입
 
-<br>
+  - JWT를 이용하여 로그인과 회원가입을 구현.
+  - 아이디는 3글자 이상 10글자 숫자,영문자 소/대문자로 구성.
+  - 비밀번호는 4글자 이상으로 구성해야 합니다.
+  - 유저프로필 이미지 등록.
+  - 아이디를 이미 사용 중이면 회원가입이 불가능합니다.
 
-## 📍 Teammate
+- 메인
 
-<div id=teammate>
-  <h4> Front-End </h4>
-  <table style="text-align:center;">
-    <tr>
-      <th><a href="https://github.com/gwangbaekun">백제열</a></th>
-    </tr>
-    <tr>
-      <td>
-        - 스크린 사이즈에 따라 비디오 플레이어 크기가 달라지는 것 구현<br>
-        - Portal을 통한 Modal 구현<br>
-        - 페이지, Carousel, Modal component 간 라우팅 연결
-      </td>
-      <td>
-        - scroll에 따라 스타일링이 변화하는 nav bar, footer 구현<br>
-        - 메인페이지 비디오 스트리밍 구현<br>
-        - 페이지, Carousel, Modal component 간 라우팅 연결
-      </td>
-      <td>
-        - 유효성 검사를 포함한 회원가입 기능 구현<br>
-        - 유효성 검사 및 token을 부여하는 로그인 기능 구현<br>
-        - kakao, google 소셜 로그인 기능 구현<br>
-        - modal 내의 하트 아이콘 클릭을 통한 '찜하기' 기능 및 찜하기 리스트 기능 구현
-      </td>
-    </tr>
-  </table>
-  <br>
-  <h4> Back-End </h4>
-  <table style="text-align:center;">
-    <tr>
-      <th><a href="https://github.com/jay95ko">고준영</a></th>
-      <th><a href="https://github.com/flow2lime">김장호</a></th>
-    </tr>
-    <tr>
-      <td>
-        - StreamingHttpResponse 와 S3를 이용한 스트리밍 서비스<br>
-        - jwt토큰과 이를통한 얻어진 권한을 활용한 찜하기 기능 구현<br>
-        - Docker, EC2, RDS, S3를 활용한 배포
-      </td>
-      <td><br>
-      </td>
-    </tr>       
-  </table>
-  <br>
-</div>
+  - 전체 영상 리스트
+  - 영상 카테고리 별 분류
+
+- 비디오 상세페이지
+
+  - Amazon CloudFront를 이용한 빠른 비디오 재생
+  - 구독 기능
+  - 같은 카테고리 영상들 보기
+
+- 업로드 페이지
+  - 카테고리 설정 및 비디오 업로드
+  - 비디오에서 썸네일 이미지 추출
+
+## 개발도구(Tools).
+
+### [BACK_END]
+
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"> <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white"> <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"> <img src="https://img.shields.io/badge/JWT-FECC00?style=for-the-badge&logo=JWT&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Front-DC0D15?style=for-the-badge&logo=Cloud Front&logoColor=white"> <img src="https://img.shields.io/badge/EC2-AA344D?style=for-the-badge&logo=EC2&logoColor=white">
+
+### [FRONT-END]
+
+<img src="https://img.shields.io/badge/Javascript ES6+-F7DF1E?style=for-the-badge&logo=Javascrip&logoColor=white"><img src="https://img.shields.io/badge/React with-Hooks-7B16FF?style=for-the-badge&logo=React with-Hooks&logoColor=white"> <img src="https://img.shields.io/badge/React Router Dom-19A974?style=for-the-badge&logo=React Router Dom&logoColor=white"> <img src="https://img.shields.io/badge/redux-9A974?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/redux thunk-57BCAD?style=for-the-badge&logo=redux-thunk&logoColor=white"> <img src="https://img.shields.io/badge/redux actions-7B16FF?style=for-the-badge&logo=redux-actions&logoColor=white"> <img src="https://img.shields.io/badge/react player-03234B?style=for-the-badge&logo=react-player&logoColor=white"> <img src="https://img.shields.io/badge/axios-F5C300?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/Eimmer-7E4798?style=for-the-badge&logo=immer&logoColor=white"> <img src="https://img.shields.io/badge/image thumbnail-06C167?style=for-the-badge&logo=image-thumbnail&logoColor=white">
+
+## 핵심기능(Function).
+
+# 4. 데모영상 및 개발노션.♣️
+
+Demo link : https://www.youtube.com/watch?v=8BMQL8NKKRM
+
+Notion link : https://www.notion.so/2-SA-2d2aeefff98c48338c308a5bbd067520
+
+# 5. 트러블 슛팅(Trouble Shooting).🚶🏻‍♂️
